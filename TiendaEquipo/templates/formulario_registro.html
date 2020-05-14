@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} <h1>Bienvenido al Registro</h1> {% endblock %}
+
+{% block content%}
+      
+        
+        {% if form.errors %}
+
+        <p style="color: red;">Por favor revisa este campo</p>
+
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+            <table>
+
+                {{form.as_table}}
+
+            </table>
+
+            <input type="submit" value="Registrar">
+            
+        </form>
+
+{% endblock %}
