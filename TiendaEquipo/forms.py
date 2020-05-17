@@ -1,7 +1,7 @@
 from django import forms
 from TiendaEquipo.models import Cliente
 
-class FormularioRegistro(forms.ModelForm):
+class FormularioCliente(forms.ModelForm):
 
     class Meta:
         model = Cliente

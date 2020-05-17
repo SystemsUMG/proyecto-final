@@ -1,29 +1,29 @@
 from django.shortcuts import render
 from  django.http import HttpResponse
-from TiendaEquipo.forms import FormularioRegistro
+from TiendaEquipo.forms import FormularioCliente
 from TiendaEquipo.models import Cliente
 from django.shortcuts import redirect
 
 # Create your views here.
 
-def registro(request):
+def cliente(request):
 
     if request.method == "POST":
         
-        formulario = FormularioRegistro(request.POST, request.FILES)
+        formulario = FormularioCliente(request.POST, request.FILES)
 
         if formulario.is_valid():
 
             formulario.save()        
 
-            return render(request, "stock.html")
+            return render(request, "TiendaEquipo/stock.html")
 
     else:
 
-        formulario = FormularioRegistro()
+        formulario = FormularioCliente()
 
-    return render(request, "formulario_registro.html", {"form": formulario})
+    return render(request, "TiendaEquipo/formulario_cliente.html", {"form": formulario})
 
 def stock(request):
 
-    return render(request, "stock.html")
+    return render(request, "TiendaEquipo/stock.html")
