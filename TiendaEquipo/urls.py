@@ -3,5 +3,5 @@ from TiendaEquipo.views import cliente, home
 
 urlpatterns = [
     path('cliente/', cliente, name ='cliente'),
-    path('home/', home, name='home'),
+    path('', home, name='home'),
 ]
