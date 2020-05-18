@@ -22,6 +22,6 @@ def cliente(request):
 
     return render(request, "TiendaEquipo/formulario_cliente.html", data)
 
-def stock(request):
+def home(request):
 
-    return render(request, "TiendaEquipo/stock.html")
+    return render(request, "TiendaEquipo/home.html")

@@ -1,25 +1,287 @@
-<html>
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
 <head>
-
-    <title>
-
-        {%block title%} {%endblock%}
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    </title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/normalize.css' %}">
+	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/sweetalert2.css' %}">
+	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/material.min.css' %}">
+	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/main.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="{% static "js/jquery-1.11.2.min.js" %}"><\/script>')</script>
+    <script src="{% static 'TiendaEquipo/js/material.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/sweetalert2.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/jquery.mCustomScrollbar.concat.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/main.js' %}" ></script>
 </head>
-
 <body>
-    <h1 style="background-color: rgb(179, 157, 219); color: white; text-align: center;">Proyecto Final</h1>
-
-    {#{% include "TiendaEquipo/superior/barra.html" %}#}
-    
-    <h3 style="background-color: 149, 117, 205; color: white;">Tienda de Informática</h3>
-
-    {% block content%} {% endblock%}
-
-    <p style="background-color: rgb(179, 157, 219); color: white; text-align: right;">Gracias por su Visita</p>
+    <!-- Panel de Notificaciones -->
+	<section class="full-width container-notifications">
+		<div class="full-width container-notifications-bg btn-Notification"></div>
+	    <section class="NotificationArea">
+	        <div class="full-width text-center NotificationArea-title tittles">Notificaciones <i class="zmdi zmdi-close btn-Notification"></i></div>
+	        <a href="#" class="Notification" id="notifation-unread-1">
+	            <div class="Notification-icon"><i class="zmdi zmdi-accounts-alt bg-info"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle"></i>
+	                    <strong>Registro de Nuevo Usuario</strong> 
+	                    <br>
+	                    <small>Justo Ahora</small>
+	                </p>
+	            </div>
+	        	<div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-1">Notificación no Leída</div> 
+	        </a>
+	        <a href="#" class="Notification" id="notifation-read-1">
+	            <div class="Notification-icon"><i class="zmdi zmdi-cloud-download bg-primary"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>Nuevas Actualizaciones</strong> 
+	                    <br>
+	                    <small>Hace 30 Minutos</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-1">Notificación Leída</div>
+	        </a>
+	        <a href="#" class="Notification" id="notifation-unread-2">
+	            <div class="Notification-icon"><i class="zmdi zmdi-upload bg-success"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle"></i>
+	                    <strong>Archivo Subido</strong> 
+	                    <br>
+	                    <small>Hace 31 Minutos</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-2">Notificación no Leída</div>
+	        </a> 
+	        <a href="#" class="Notification" id="notifation-read-2">
+	            <div class="Notification-icon"><i class="zmdi zmdi-mail-send bg-danger"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>Correo Nuevo</strong> 
+	                    <br>
+	                    <small>Hace 37 Minutos</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-2">Notificación Leída</div>
+	        </a>
+	        <a href="#" class="Notification" id="notifation-read-3">
+	            <div class="Notification-icon"><i class="zmdi zmdi-folder bg-primary"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>Carpeta Eliminada</strong> 
+	                    <br>
+	                    <small>Hace 1 Hora</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-3">Notificación Leída</div>
+	        </a>  
+	    </section>
+	</section>
+	<!-- Barra Lateral -->
+	<section class="full-width navLateral">
+		<div class="full-width navLateral-bg btn-menu"></div>
+		<div class="full-width navLateral-body">
+			<div class="full-width navLateral-body-logo text-center tittles">
+				<i class="zmdi zmdi-close btn-menu"></i> Sistema Venta de Computadoras 
+			</div>
+			<figure class="full-width navLateral-body-tittle-menu">
+				<div>
+					<img src="{% static 'TiendaEquipo/assets/img/avatar-male.png' %}" alt="Avatar" class="img-responsive">
+				</div>
+				<figcaption>
+					<span>
+						Nombre Apellido<br>
+						<small>Admin</small>
+					</span>
+				</figcaption>
+			</figure>
+			<nav class="full-width">
+				<ul class="full-width list-unstyle menu-principal">
+					<li class="full-width">
+						<a href="{% url 'home' %}" class="full-width">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-view-dashboard"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Inicio
+							</div>
+						</a>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="#!" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-case"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Administración
+							</div>
+							<span class="zmdi zmdi-chevron-left"></span>
+						</a>
+						<ul class="full-width menu-principal sub-menu-options">
+							<li class="full-width">
+								<a href="#" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-balance"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Compañía
+									</div>
+								</a>
+							</li>
+							<li class="full-width">
+								<a href="#" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-truck"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Proveedores
+									</div>
+								</a>
+							</li>
+							<li class="full-width">
+								<a href="#" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-card"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Pagos
+									</div>
+								</a>
+							</li>
+							<li class="full-width">
+								<a href="#" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-label"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Categorías
+									</div>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="#!" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-face"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Usuarios
+							</div>
+							<span class="zmdi zmdi-chevron-left"></span>
+						</a>
+						<ul class="full-width menu-principal sub-menu-options">
+							<li class="full-width">
+								<a href="" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Administradores
+									</div>
+								</a>
+							</li>
+							<li class="full-width">
+								<a href="{% url 'cliente' %}" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-accounts"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										Clientes
+									</div>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="#" class="full-width">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-washing-machine"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Productos
+							</div>
+						</a>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="#" class="full-width">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-shopping-cart"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Ventas
+							</div>
+						</a>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="#" class="full-width">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-store"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Inventario
+							</div>
+						</a>
+					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="/admin/" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-wrench"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								Ajustes
+							</div>
+							<span class="zmdi zmdi-chevron-left"></span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+    </section>
+    <!-- Contenido -->
+	<section class="full-width pageContent">
+        <!-- Barra de Navegación -->
+		<div class="full-width navBar">
+			<div class="full-width navBar-options">
+				<i class="zmdi zmdi-swap btn-menu" id="btn-menu"></i>	
+				<div class="mdl-tooltip" for="btn-menu">Hide / Show MENU</div>
+				<nav class="navBar-options-list">
+					<ul class="list-unstyle">
+						<li class="btn-Notification" id="notifications">
+							<i class="zmdi zmdi-notifications"></i>
+							<div class="mdl-tooltip" for="notifications">Notifications</div>
+						</li>
+						<li class="btn-exit" id="btn-exit">
+							<i class="zmdi zmdi-power"></i>
+							<div class="mdl-tooltip" for="btn-exit">LogOut</div>
+						</li>
+						<li class="text-condensedLight noLink" ><small>User Name</small></li>
+						<li class="noLink">
+							<figure>
+								<img src="{% static 'TiendaEquipo/assets/img/avatar-male.png' %}" alt="Avatar" class="img-responsive">
+							</figure>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+        {% block contenido %} {% endblock %}
+    </section>
 </body>
-
 </html>

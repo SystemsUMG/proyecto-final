@@ -1,7 +1,7 @@
 from django.urls import path
-from TiendaEquipo.views import cliente, stock
+from TiendaEquipo.views import cliente, home
 
 urlpatterns = [
-    path('cliente/', cliente, name = ('Cliente')),
-    path('stock/', stock, name="Stock")
+    path('cliente/', cliente, name ='cliente'),
+    path('home/', home, name='home'),
 ]
