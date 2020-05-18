@@ -7,22 +7,20 @@ from django.shortcuts import redirect
 # Create your views here.
 
 def cliente(request):
+    data = {
+        'form': FormularioCliente()
+    }
 
     if request.method == "POST":
-        
-        formulario = FormularioCliente(request.POST, request.FILES)
+        formulario = FormularioCliente(request.POST, files=request.FILES)
 
         if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = 'Cliente Añadido' 
 
-            formulario.save()        
+        data['form'] = formulario      
 
-            return render(request, "TiendaEquipo/stock.html")
-
-    else:
-
-        formulario = FormularioCliente()
-
-    return render(request, "TiendaEquipo/formulario_cliente.html", {"form": formulario})
+    return render(request, "TiendaEquipo/formulario_cliente.html", data)
 
 def stock(request):
 
