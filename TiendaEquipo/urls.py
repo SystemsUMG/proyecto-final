@@ -1,7 +1,9 @@
 from django.urls import path
-from TiendaEquipo.views import cliente, home
+from TiendaEquipo.views import nuevo_cliente, home, prueba, lista_clientes
 
 urlpatterns = [
-    path('cliente/', cliente, name ='cliente'),
+    path('nuevo-cliente/', nuevo_cliente, name ='nuevo_cliente'),
     path('', home, name='home'),
+    path('prueba/', prueba, name='prueba'),
+    path('lista-clientes/', lista_clientes, name='lista_clientes'),
 ]

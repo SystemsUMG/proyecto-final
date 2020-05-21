@@ -1,27 +1,41 @@
 from django.shortcuts import render
 from  django.http import HttpResponse
-from TiendaEquipo.forms import FormularioCliente
+from TiendaEquipo.forms import FormularioCliente, FormularioPrueba
 from TiendaEquipo.models import Cliente
 from django.shortcuts import redirect
 
 # Create your views here.
 
-def cliente(request):
-    data = {
-        'form': FormularioCliente()
-    }
-
+def nuevo_cliente(request):
     if request.method == "POST":
-        formulario = FormularioCliente(request.POST, files=request.FILES)
+        form = FormularioCliente(request.POST, files=request.FILES)
 
-        if formulario.is_valid():
-            formulario.save()
-            data['mensaje'] = 'Cliente Añadido' 
+        if form.is_valid():
+            form.save()
+            return redirect("lista_clientes")
 
-        data['form'] = formulario      
+    else:
+        form = FormularioCliente()      
 
-    return render(request, "TiendaEquipo/formulario_cliente.html", data)
+    return render(request, "TiendaEquipo/nuevo_cliente.html", {'form': form})
 
 def home(request):
 
     return render(request, "TiendaEquipo/home.html")
+
+def prueba(request):
+    if request.method == "POST":
+        form = FormularioPrueba(request.POST, files=request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+
+    else:
+        form = FormularioPrueba()  
+
+    return render(request, "TiendaEquipo/prueba.html", {'form': form})
+
+def lista_clientes(request):
+
+    return render(request, "TiendaEquipo/lista_clientes.html")

@@ -1,0 +1,126 @@
+{% extends 'TiendaEquipo/base.html' %}
+{% load static %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block javascript %}
+<script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
+<script src="{% static 'TiendaEquipo/js/upload_file.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/upload_file.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-account"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Añadir Cliente <br>
+        </p>
+    </div>
+</section>
+<!-- pageContent 
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Nuevo Cliente
+                    </div>
+                    <div class="full-width panel-content">
+                        <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Cliente</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="DNIClient" name="dpi">
+                                        <label class="mdl-textfield__label" for="DNIClient">DPI</label>
+                                        <span class="mdl-textfield__error" >Invalid DPI</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameClient" name="nombre">
+                                        <label class="mdl-textfield__label" for="NameClient">Name</label>
+                                        <span class="mdl-textfield__error">Invalid name</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="LastNameClient" name="apellido">
+                                        <label class="mdl-textfield__label" for="LastNameClient">Last Name</label>
+                                        <span class="mdl-textfield__error">Invalid last name</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="addressClient1" name="nombre" name="direccion">
+                                        <label class="mdl-textfield__label" for="addressClient1">Address 1</label>
+                                        <span class="mdl-textfield__error">Invalid address</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="tel" pattern="-?[0-9+()- ]*(\.[0-9]+)?" id="phoneClient" name="telefono">
+                                        <label class="mdl-textfield__label" for="phoneClient">Phone</label>
+                                        <span class="mdl-textfield__error">Invalid phone number</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="email" id="emailClient" name="email">
+                                        <label class="mdl-textfield__label" for="emailClient">E-mail</label>
+                                        <span class="mdl-textfield__error">Invalid E-mail</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="NIT" name="nit">
+                                        <label class="mdl-textfield__label" for="NIT">NIT</label>
+                                        <span class="mdl-textfield__error">Invalid NIT</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="CARD" name="tarjeta">
+                                        <label class="mdl-textfield__label" for="CARD">Tarjeta</label>
+                                        <span class="mdl-textfield__error">Invalid Tarjeta</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="Clave" name="clave">
+                                        <label class="mdl-textfield__label" for="Clave">Clave</label>
+                                        <span class="mdl-textfield__error">Invalid Clave</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="date" id="Date" name="fecha_tarjeta">
+                                        <label class="mdl-textfield__label" for="Date">fecha</label>
+                                        <span class="mdl-textfield__error">Invalid date</span>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Registrar">
+                            </div>
+                            <p class="text-center">
+                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient" type="submit">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </button>
+                                <div class="mdl-tooltip" for="btn-addClient">Add client</div>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock %} 

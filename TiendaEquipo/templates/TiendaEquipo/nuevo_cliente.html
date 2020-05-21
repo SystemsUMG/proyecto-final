@@ -1,0 +1,73 @@
+{% extends 'TiendaEquipo/base.html' %}
+{% load static %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block javascript %}
+<script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
+<script src="{% static 'TiendaEquipo/js/upload_file.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/upload_file.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-account-add"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Añadir Cliente <br>
+        </p>
+    </div>
+</section>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="full-width panel mdl-shadow--2dp">
+                <div class="full-width panel-tittle bg-primary text-center tittles">
+                    Nuevo Cliente
+                </div>
+                <div class="full-width panel-content">
+                    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="mdl-grid">
+                           <div class="mdl-cell mdl-cell--12-col">
+                                <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Cliente</legend><br>
+                            </div>
+                            {% for field in form %}
+                                {% if field == form.foto %}
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                                            <input class="mdl-textfield__input" placeholder="Foto (Opcional)" type="text" id="uploadFile" readonly/>
+                                            <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                                                <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}
+                                                <span>{{field.errors.as_text }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <label class="mdl-textfield__label">{{ field.label }}</label>
+                                            {{ field }}
+                                            <span>{{field.errors }}</span>                
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="text-center">
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                                <i class="zmdi zmdi-plus"></i>
+                            </button>
+                            <div class="mdl-tooltip" for="btn-addClient">Añadir Cliente</div>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

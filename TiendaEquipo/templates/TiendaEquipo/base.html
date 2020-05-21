@@ -11,13 +11,9 @@
 	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/material.min.css' %}">
 	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/material-design-iconic-font.min.css' %}">
 	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/jquery.mCustomScrollbar.css' %}">
-    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/main.css' %}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="{% static "js/jquery-1.11.2.min.js" %}"><\/script>')</script>
-    <script src="{% static 'TiendaEquipo/js/material.min.js' %}" ></script>
-	<script src="{% static 'TiendaEquipo/js/sweetalert2.min.js' %}" ></script>
-	<script src="{% static 'TiendaEquipo/js/jquery.mCustomScrollbar.concat.min.js' %}" ></script>
-	<script src="{% static 'TiendaEquipo/js/main.js' %}" ></script>
+	<link rel="stylesheet" href="{% static 'TiendaEquipo/css/main.css' %}">
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
     <!-- Panel de Notificaciones -->
@@ -175,31 +171,31 @@
 					<li class="full-width">
 						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-face"></i>
+								<i class="zmdi zmdi-accounts-alt"></i>
 							</div>
 							<div class="navLateral-body-cr">
-								Usuarios
+								Clientes
 							</div>
 							<span class="zmdi zmdi-chevron-left"></span>
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
-								<a href="" class="full-width">
+								<a href="{% url 'nuevo_cliente' %}" class="full-width">
 									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-account"></i>
+										<i class="zmdi zmdi-account-add"></i>
 									</div>
 									<div class="navLateral-body-cr">
-										Administradores
+										Nuevo Cliente
 									</div>
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="{% url 'cliente' %}" class="full-width">
+								<a href="{% url 'lista_clientes' %}" class="full-width">
 									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-accounts"></i>
+										<i class="zmdi zmdi-accounts-list-alt"></i>
 									</div>
 									<div class="navLateral-body-cr">
-										Clientes
+										Lista Clientes
 									</div>
 								</a>
 							</li>
@@ -282,6 +278,14 @@
 			</div>
 		</div>
         {% block contenido %} {% endblock %}
-    </section>
+	</section>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="{% static "js/jquery-1.11.2.min.js" %}"><\/script>')</script>
+	<script src="{% static 'TiendaEquipo/js/material.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/sweetalert2.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/jquery.mCustomScrollbar.concat.min.js' %}" ></script>
+	<script src="{% static 'TiendaEquipo/js/main.js' %}" ></script>
+	{% block javascript %}
+    {% endblock %} 
 </body>
 </html>

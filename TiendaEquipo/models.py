@@ -17,3 +17,12 @@ class Cliente(models.Model):
 
     def __str__(self):
         return '%s %s' %(self.apellido, self.nombre)
+
+class Prueba(models.Model):
+    prueba1 = models.IntegerField()
+    prueba2 = models.EmailField()
+    prueba3 = models.ImageField()
+
+    def __str__(self):
+        return '%s' %self.prueba1
+    

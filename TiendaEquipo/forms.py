@@ -1,33 +1,97 @@
 from django import forms
-from TiendaEquipo.models import Cliente
+from TiendaEquipo.models import Cliente, Prueba
 from django.forms import ModelForm
 
 import datetime
 
+fecha_actual = datetime.date.today() - datetime.timedelta(days=1)
+fecha_futura = datetime.date.today() + datetime.timedelta(days=2190)
+
 class FormularioCliente(ModelForm):
         
-    dpi = forms.CharField(min_length=13, max_length=13)
-    nombre = forms.CharField(min_length=2, max_length=30)
-    apellido = forms.CharField(min_length=2, max_length=30)
-    direccion = forms.CharField(min_length=3, max_length=50)
-    telefono = forms.CharField(min_length=8, max_length=8)
-    email = forms.EmailField()
-    nit = forms.CharField(min_length=9, max_length=9)
-    tarjeta = forms.CharField(min_length=16, max_length=16)
-    clave = forms.CharField(min_length=3, max_length=3)
+    dpi = forms.CharField(
+        min_length=13, 
+        max_length=13,
+        label='DPI',
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    nombre = forms.CharField(
+        min_length=2, 
+        max_length=35,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    apellido = forms.CharField(
+        min_length=2,
+        max_length=35,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    direccion = forms.CharField(
+        min_length=3,
+        max_length=50,
+        label='Dirección',
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
+        )
+    
+    telefono = forms.CharField(
+        min_length=8,
+        max_length=8,
+        label='Teléfono',
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    email = forms.EmailField(
+        label='Correo Electrónico',
+        widget=forms.EmailInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    nit = forms.CharField(
+        min_length=8,
+        max_length=9,
+        label='NIT',
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    tarjeta = forms.CharField(
+        min_length=16,
+        max_length=16,
+        label='Número de Tarjeta',
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    clave = forms.CharField(
+        min_length=3,
+        max_length=3,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+    )
+
+    fecha_tarjeta = forms.DateField(
+        label='Fecha de Vencimiento',
+        widget=forms.DateInput(attrs={'class' : 'mdl-textfield__input', 'type': 'date',
+        'min':fecha_actual,
+        'max':fecha_futura,
+        }),
+    )
 
     class Meta:
         model = Cliente
         fields = '__all__'
 
-        widgets = {
-            'fecha_tarjeta': forms.SelectDateWidget(years=range(2020, 2026))
-        }
+class FormularioPrueba(ModelForm):
+    prueba1 = forms.IntegerField(
+        max_value=999, 
+        min_value=000, 
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        label = 'Código',
+    )
 
-    def clean_fecha_tarjeta(self):
-        fecha = self.cleaned_data['fecha_tarjeta']
+    prueba2 = forms.EmailField( 
+        widget=forms.EmailInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Email',
+    )
 
-        if fecha <= datetime.date.today():
-            raise forms.ValidationError("La Fecha no Puede ser Menor al Día de Hoy")
-
-        return fecha
+    class Meta:
+        model = Prueba
+        fields = ['prueba1', 'prueba2', 'prueba3']
