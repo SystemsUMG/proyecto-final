@@ -4,6 +4,13 @@
 {% block title %} Lista Clientes {% endblock %}
 
 {% block contenido %}
+
+
+{% block javascript %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{% static 'Cine/js/confirmacion.js' %}"></script>
+{% endblock %}
+
 <section class="full-width header-well">
     <div class="full-width header-well-icon">
         <i class="zmdi zmdi-accounts-list-alt"></i>
@@ -15,7 +22,28 @@
         </p>
     </div>
 </section>
-<div class="mdl-tabs__panel is-active" id="tabListClient">
+
+<table class="table table-striped">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DPI</th>
+        <th>Teléfono</th>
+    </tr>
+
+    {% for p in clientes %}
+
+    <tr>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.apellido }}</td>
+        <td>{{ p.dpi }}</td>
+        <td>{{ p.telefono }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+<!--<div class="mdl-tabs__panel is-active" id="tabListClient">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
             <div class="full-width panel mdl-shadow--2dp">
@@ -103,5 +131,5 @@
             
         </div>
     </div>
-</div>
+</div>-->
 {% endblock %}

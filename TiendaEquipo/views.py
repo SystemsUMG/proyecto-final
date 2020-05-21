@@ -37,5 +37,6 @@ def prueba(request):
     return render(request, "TiendaEquipo/prueba.html", {'form': form})
 
 def lista_clientes(request):
+    clientes = Cliente.objects.all()
 
-    return render(request, "TiendaEquipo/lista_clientes.html")
+    return render(request, "TiendaEquipo/lista_clientes.html", {'clientes': clientes})
