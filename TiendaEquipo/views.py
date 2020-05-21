@@ -15,7 +15,7 @@ def nuevo_cliente(request):
             return redirect("lista_clientes")
 
     else:
-        form = FormularioCliente()      
+        form = FormularioCliente() 
 
     return render(request, "TiendaEquipo/nuevo_cliente.html", {'form': form})
 
@@ -40,3 +40,19 @@ def lista_clientes(request):
     clientes = Cliente.objects.all()
 
     return render(request, "TiendaEquipo/lista_clientes.html", {'clientes': clientes})
+
+def busqueda_clientes(request):
+    if request.GET["cli"]:
+        cliente = request.GET["cli"]
+
+        if len(cliente) > 30:
+            mensaje = "Nombre Demasiado Largo"
+
+        else:
+            clientes = Cliente.objects.filter(nombre__icontains = cliente)
+            return render(request, "TiendaEquipo/resultado_clientes.html", {"clientes": clientes, "query": cliente})
+    
+    else:
+        mensaje = "Por Favor Ingrese Datos al Realizar la Búsqueda"
+
+    return render(request, "TiendaEquipo/resultado_clientes.html", {"mensaje": mensaje})

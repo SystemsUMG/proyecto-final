@@ -850,3 +850,10 @@ html, body{
 		text-align: right;
 	}
 }
+/*======= Colores Iconos*/
+.zmdi-arrow-left {
+	color: #00838f;
+  }
+.zmdi-search {
+	color: #00838f;
+  }

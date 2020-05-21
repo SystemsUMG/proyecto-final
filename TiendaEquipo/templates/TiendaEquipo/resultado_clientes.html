@@ -1,0 +1,78 @@
+{% extends 'TiendaEquipo/base.html' %}
+{% load static %}
+
+{% block title %} Lista Clientes {% endblock %}
+
+{% block contenido %}
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-accounts-list-alt"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Panel para visualizar clientes. <br>
+            Seleccione un cliente para poder modificar los datos.
+        </p>
+    </div>
+</section>
+<div class="mdl-tabs__panel is-active" id="tabListClient">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+                <div class="full-width panel-tittle bg-success text-center tittles">
+                    Lista de Clientes
+                </div>
+                <div class="full-width panel-content">
+                    <form action="/busqueda-clientes/" method="GET">
+                        <div class="mdl-list__item mdl-list__item--two-line">
+                            <div class="mdl-button mdl-button--primary mdl-button--icon">
+                                <a href="{% url 'lista_clientes' %}">
+                                    <i class="zmdi zmdi-arrow-left"></i>
+                                </a>
+                           </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable text-center">
+                                <label class="mdl-button mdl-js-button mdl-button--icon" for="searchClient">
+                                   <i class="zmdi zmdi-search"></i>
+                                </label>
+                                <div class="mdl-textfield__expandable-holder">
+                                    <input class="mdl-textfield__input" type="text" name="cli" id="searchClient">
+                                    <label class="mdl-textfield__label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mdl-list">     
+                        {% if clientes %}
+                            <p class="text-condensedLight">
+                                {{clientes|length}} Clientes <strong>{{query}}</strong> Encontrados
+                            </p>
+                            {% for cliente in clientes %}
+                                <li class="full-width divider-menu-h"></li>
+                                <div class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-account mdl-list__item-avatar">{{ p.foto }}</i>
+                                        <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
+                                        <span class="mdl-list__item-sub-title">DPI: {{ cliente.dpi }}</span>
+                                        <span class="mdl-list__item-sub-title">Teléfono: {{ cliente.telefono }}</span>
+                                    </span>
+                                    <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
+                                </br> {{ mensaje }}
+                                </div>                    
+                            {% endfor %}
+                        {% else %}                                
+                            <li class="full-width divider-menu-h"></li>
+                            <div class="mdl-list__item mdl-list__item--two-line">
+                                <span class="mdl-list__item-primary-content text-center">
+                                    <span>Cliente No Encontrado</span>
+                                </br> {{ mensaje }}
+                                </span>
+                            </div>
+                        {% endif %}                     
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

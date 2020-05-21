@@ -25,4 +25,3 @@ class Prueba(models.Model):
 
     def __str__(self):
         return '%s' %self.prueba1
-    

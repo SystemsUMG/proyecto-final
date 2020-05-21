@@ -43,7 +43,7 @@
                                             <input class="mdl-textfield__input" placeholder="Foto (Opcional)" type="text" id="uploadFile" readonly/>
                                             <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
                                                 <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}
-                                                <span>{{field.errors.as_text }}</span>
+                                                {{field.errors.as_text }}
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <label class="mdl-textfield__label">{{ field.label }}</label>
                                             {{ field }}
-                                            <span>{{field.errors }}</span>                
+                                            {{field.errors }}                
                                         </div>
                                     </div>
                                 {% endif %}
