@@ -15,7 +15,3 @@
   .mdl-textfield--file .mdl-button--file {
     right: 0;
   }
-
-  .mdl-textfield:not(.is-dirty) input::-webkit-datetime-edit {
-    color: transparent; 
-}

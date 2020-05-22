@@ -10,17 +10,16 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'TiendaEquipo/css/upload_file.css' %}">
-    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/date_field.css' %}">
 {% endblock %}
 
 {% block contenido %}
 <section class="full-width header-well">
     <div class="full-width header-well-icon">
-        <i class="zmdi zmdi-account-add"></i>
+        <i class="zmdi zmdi-account-box"></i>
     </div>
     <div class="full-width header-well-text">
         <p class="text-condensedLight">
-            Añadir Cliente <br>
+            Modificar Información del Cliente <br>
         </p>
     </div>
 </section>
@@ -28,8 +27,8 @@
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
             <div class="full-width panel mdl-shadow--2dp">
-                <div class="full-width panel-tittle bg-primary text-center tittles">
-                    Nuevo Cliente
+                <div class="full-width panel-tittle bg-info text-center tittles">
+                    Modificar Cliente
                 </div>
                 <div class="full-width panel-content">
                     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
@@ -60,8 +59,8 @@
                             {% endfor %}
                         </div>
                         <p class="text-center">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
-                                <i class="zmdi zmdi-plus"></i>
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="btn-addClient">
+                                <i class="zmdi zmdi-border-color"></i>
                             </button>
                             <div class="mdl-tooltip" for="btn-addClient">Añadir Cliente</div>
                         </p>

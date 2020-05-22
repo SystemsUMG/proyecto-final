@@ -44,8 +44,16 @@
                                 <span class="mdl-list__item-sub-title">DPI: {{ cliente.dpi }}</span>
                                 <span class="mdl-list__item-sub-title">Teléfono: {{ cliente.telefono }}</span>
                             </span>
-                            <a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-                        </div>                    
+                            <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ cliente.id }}"><i class="zmdi zmdi-more-vert"></i></div>
+                            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ cliente.id }}">
+                                <a href="{% url 'modificar_cliente' cliente.id %}" class="subrayado">
+                                    <li class="mdl-menu__item">Modificar</li>
+                                </a>
+                                <a href="" class="subrayado">
+                                    <li class="mdl-menu__item">Eliminar</li>
+                                </a>
+                            </ul>
+                        </div>                   
                     {% endfor %}
                     </div>
                 </div>

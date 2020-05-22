@@ -56,3 +56,18 @@ def busqueda_clientes(request):
         mensaje = "Por Favor Ingrese Datos al Realizar la Búsqueda"
 
     return render(request, "TiendaEquipo/resultado_clientes.html", {"mensaje": mensaje})
+
+def modificar_cliente(request, id):
+    cliente = Cliente.objects.get(id=id)
+    data = {
+        'form': FormularioCliente(instance=cliente)
+    }
+    if request.method == "POST":
+        formulario = FormularioCliente(data=request.POST, instance=cliente, files=request.FILES)
+
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = 'Modificado Correctamente'
+        data['form'] = FormularioCliente(instance=Cliente.objects.get(id=id))
+
+    return render(request, 'TiendaEquipo/modificar_cliente.html', data)

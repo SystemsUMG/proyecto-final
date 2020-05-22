@@ -853,7 +853,27 @@ html, body{
 /*======= Colores Iconos*/
 .zmdi-arrow-left {
 	color: #00838f;
-  }
+}
 .zmdi-search {
 	color: #00838f;
+}
+
+.header-well-icon .zmdi-accounts-list-alt {
+	color: #70c16c;
+}
+
+.header-well-icon .zmdi-account-add {
+	color: #659bd6;
   }
+
+.header-well-icon .zmdi-account-box {
+	color: #659bd6;
+  }
+
+.mdl-button--icon .zmdi-more-vert {
+	color: #62757f;
+}
+
+.subrayado {
+	text-decoration: none;
+}
