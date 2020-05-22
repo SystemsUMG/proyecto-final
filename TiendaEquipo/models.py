@@ -24,4 +24,35 @@ class Prueba(models.Model):
     prueba3 = models.ImageField()
 
     def __str__(self):
-        return '%s' %self.prueba1
+        return self.prueba1
+
+class Proveedor(models.Model):
+	nombre = models.CharField(max_length=25)
+	direccion = models.CharField(max_length=45)
+	telefono = models.IntegerField() 
+	correo = models.EmailField()
+	nit = models.CharField(max_length=9)
+    
+
+
+class Categoria(models.Model):
+    categoria = models.CharField(max_length=50)
+    subcategoria = models.CharField(max_length=50)
+
+    def __str__(self):
+        return '%s' %self.categoria
+
+class Producto(models.Model):
+    codigo_barras = models.IntegerField()
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    unidades = models.IntegerField()
+    precio_compra = models.IntegerField()
+    precio_total_compra = models.IntegerField()
+    fecha_ingreso = models.DateField()
+    nombre_producto = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50)
+    foto_producto = models.ImageField()
+
+    def __str__(self):
+        return '%s' %self.nombre_producto
