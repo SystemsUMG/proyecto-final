@@ -71,3 +71,7 @@ def modificar_cliente(request, id):
         data['form'] = FormularioCliente(instance=Cliente.objects.get(id=id))
 
     return render(request, 'TiendaEquipo/modificar_cliente.html', data)
+
+def compras(request):
+
+    return render(request, "TiendaEquipo/compras.html")
