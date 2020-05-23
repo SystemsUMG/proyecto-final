@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('TiendaEquipo.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 admin.site.site_header = "Administración de Sistema Venta de Computadoras"

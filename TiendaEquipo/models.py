@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Cliente(models.Model):
-    dpi = models.CharField(max_length=13, verbose_name="DPI")
+    dpi = models.CharField(max_length=13, verbose_name="DPI", unique=True)
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     direccion = models.CharField(max_length=50, verbose_name="Dirección")

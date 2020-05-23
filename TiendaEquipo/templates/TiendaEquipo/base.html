@@ -192,10 +192,13 @@
 				<div class="mdl-tooltip" for="btn-menu">Hide / Show MENU</div>
 				<nav class="navBar-options-list">
 					<ul class="list-unstyle">
-						<li class="btn-exit" id="btn-exit">
-							<i class="zmdi zmdi-power"></i>
-							<div class="mdl-tooltip" for="btn-exit">LogOut</div>
-						</li>
+						<a href="{% url 'logout' %}">
+							<li class="btn-exit" id="btn-exit">
+								<i class="zmdi zmdi-power"></i>
+								<div class="mdl-tooltip" for="btn-exit">LogOut</div>
+							</li>
+						</a>
+
 						<li class="text-condensedLight noLink" ><small>User Name</small></li>
 						<li class="noLink">
 							<figure>

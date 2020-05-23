@@ -23,6 +23,9 @@ def home(request):
 
     return render(request, "TiendaEquipo/home.html")
 
+def redireccion(request):
+    return redirect('login')
+
 def prueba(request):
     if request.method == "POST":
         form = FormularioPrueba(request.POST, files=request.FILES)
@@ -71,3 +74,9 @@ def modificar_cliente(request, id):
         data['form'] = FormularioCliente(instance=Cliente.objects.get(id=id))
 
     return render(request, 'TiendaEquipo/modificar_cliente.html', data)
+
+def eliminar_cliente(request, id):
+    cliente = Cliente.objects.get(id=id)
+    cliente.delete()
+
+    return redirect("lista_clientes")
