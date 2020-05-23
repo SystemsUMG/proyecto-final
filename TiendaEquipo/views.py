@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from  django.http import HttpResponse
 from TiendaEquipo.forms import FormularioCliente, FormularioPrueba
 from TiendaEquipo.models import Cliente
-from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -19,6 +19,7 @@ def nuevo_cliente(request):
 
     return render(request, "TiendaEquipo/nuevo_cliente.html", {'form': form})
 
+@login_required
 def home(request):
 
     return render(request, "TiendaEquipo/home.html")
