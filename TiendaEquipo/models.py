@@ -44,6 +44,11 @@ CATEGORIES_CHOICES = [
         ),
     ]
 
+PAYMENT_CHOICES = [
+    ('tarjeta', 'Tarjeta'),
+    ('efectivo', 'Efectivo'),
+]
+
 class Cliente(models.Model):
     dpi = models.CharField(max_length=13, verbose_name="DPI", unique=True)
     nombre = models.CharField(max_length=30)
@@ -79,16 +84,15 @@ class Proveedor(models.Model):
         return self.nombre
 
 class Producto(models.Model):
-    
     codigo_barras = models.IntegerField()
     nombre_producto = models.CharField(max_length=50, unique=True)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     marca = models.CharField(max_length=50)
     categoria = models.CharField(max_length=35, choices=CATEGORIES_CHOICES, default='NoteBook')
     unidades = models.IntegerField()
-    precio_compra = models.DecimalField(max_digits=5, decimal_places=2,null=True, blank=True)
-    precio_venta = models.DecimalField(max_digits=5, decimal_places=2,null=True, blank=True)
-    precio_total_compra = models.DecimalField(max_digits=5, decimal_places=2,null=True, blank=True)
+    precio_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
+    precio_venta = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
+    precio_total_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
     stock = models.IntegerField()
     fecha_ingreso = models.DateField()
     foto_producto = models.ImageField()
@@ -96,3 +100,14 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre_producto
+
+class Venta(models.Model):
+    numeroVenta= models.IntegerField(verbose_name="No. Venta", unique=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    pago= models.CharField(max_length=9, choices=PAYMENT_CHOICES)
+    fecha= models.DateField(verbose_name="Fecha")
+    producto= models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+
+    def __str__(self):
+        return '%s' %self.cliente

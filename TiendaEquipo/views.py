@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from  django.http import HttpResponse
-from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto
-from TiendaEquipo.models import Cliente, Proveedor
+from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto, FormularioVenta
+from TiendaEquipo.models import Cliente, Proveedor, Venta
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -112,3 +112,16 @@ def nuevo_producto(request):
         form = FormularioProducto()
     
     return render(request, "TiendaEquipo/nuevo_producto.html", {'form': form})
+
+def ventas(request):
+    if request.method == "POST":
+        form = FormularioVenta(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("inventario")
+
+    else:
+        form = FormularioVenta() 
+
+    return render(request, "TiendaEquipo/ventas.html", {'form': form})

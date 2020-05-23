@@ -1,7 +1,6 @@
 from django import forms
-from TiendaEquipo.models import Cliente, Prueba, Proveedor, Producto
+from TiendaEquipo.models import Cliente, Prueba, Proveedor, Producto, Venta
 from django.forms import ModelForm
-
 import datetime
 
 fecha_actual = datetime.date.today() - datetime.timedelta(days=1)
@@ -137,4 +136,21 @@ class FormularioProducto(ModelForm):
     
     class Meta:
         model = Producto
+        fields = '__all__'
+    
+class FormularioVenta(ModelForm):
+    numeroVenta = forms.CharField(
+       min_length=1,
+       max_length=3,
+       widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'})
+    )
+
+    cantidad = forms.CharField(
+        min_length=1,
+        max_length=3,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'})
+    )
+
+    class Meta:
+        model = Venta
         fields = '__all__'

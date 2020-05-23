@@ -882,6 +882,10 @@ html, body{
 	color: #659bd6;
 }
 
+.header-well-icon .zmdi-shopping-cart {
+	color: #659bd6;
+}
+
 .subrayado {
 	text-decoration: none;
 }
