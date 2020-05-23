@@ -1,5 +1,5 @@
 from django import forms
-from TiendaEquipo.models import Cliente, Prueba
+from TiendaEquipo.models import Cliente, Prueba, Proveedor, Producto
 from django.forms import ModelForm
 
 import datetime
@@ -95,3 +95,46 @@ class FormularioPrueba(ModelForm):
     class Meta:
         model = Prueba
         fields = ['prueba1', 'prueba2', 'prueba3']
+
+class FormularioProveedor(ModelForm):
+    nombre = forms.CharField(
+        max_length=25,
+        min_length=2,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'})
+    )
+
+    direccion = forms.CharField(
+        max_length=45,
+        min_length=4,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Dirección',
+    )
+
+    telefono = forms.CharField(
+        max_length=8,
+        min_length=8,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Teléfono',
+    )
+
+    nit = forms.CharField(
+        max_length=9,
+        min_length=8,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='NIT',
+    )
+
+    correo = forms.EmailField( 
+        widget=forms.EmailInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Email',
+    )
+
+    class Meta:
+        model = Proveedor
+        fields = '__all__'
+
+class FormularioProducto(ModelForm):
+    
+    class Meta:
+        model = Producto
+        fields = '__all__'

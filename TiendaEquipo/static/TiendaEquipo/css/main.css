@@ -874,6 +874,14 @@ html, body{
 	color: #62757f;
 }
 
+.header-well-icon .zmdi-truck {
+	color: #659bd6;
+}
+
+.header-well-icon .zmdi-laptop {
+	color: #659bd6;
+}
+
 .subrayado {
 	text-decoration: none;
 }

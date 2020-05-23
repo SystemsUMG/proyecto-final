@@ -1,0 +1,57 @@
+{% extends 'TiendaEquipo/base.html' %}
+{% load static %}
+
+{% block title %} Inventario {% endblock %}
+
+{% block contenido %}
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-store"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Seleccione un producto si desea modificar o eliminar datos.
+        </p>
+    </div>
+</section>
+<div class="full-width divider-menu-h"></div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        <div class="table-responsive">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Name</th>
+                        <th>Codigo</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">{{ producto.nombre }}</td>
+                            <td>{{ producto.nit }}</td>
+                            <td>{{ producto.telefono }}</td>
+                            <td>{{ producto.correo }}</td>
+                            <td>{{ producto.direccion }}</td>
+                            <td> <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ producto.id }}"><i class="zmdi zmdi-more-vert"></i></div>
+                                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ producto.id }}">
+                                    <a href="" class="subrayado">
+                                        <li class="mdl-menu__item">Modificar</li>
+                                    </a>
+                                    <a href="" class="subrayado">
+                                        <li class="mdl-menu__item">Eliminar</li>
+                                    </a>
+                                </ul>
+                            </td>
+                        </tr>          
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

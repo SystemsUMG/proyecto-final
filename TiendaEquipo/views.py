@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from  django.http import HttpResponse
-from TiendaEquipo.forms import FormularioCliente, FormularioPrueba
-from TiendaEquipo.models import Cliente
+from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto
+from TiendaEquipo.models import Cliente, Proveedor
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -81,3 +81,34 @@ def eliminar_cliente(request, id):
     cliente.delete()
 
     return redirect("lista_clientes")
+
+def proveedores(request):
+    if request.method == "POST":
+        form = FormularioProveedor(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("inventario")
+
+    else:
+        form = FormularioProveedor()
+
+    return render(request, "TiendaEquipo/proveedores.html", {'form': form})
+
+def inventario(request):
+    productos = Proveedor.objects.all()
+    
+    return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
+
+def nuevo_producto(request):
+    if request.method == "POST":
+        form = FormularioProducto(request.POST, files=request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("inventario")
+
+    else:
+        form = FormularioProducto()
+    
+    return render(request, "TiendaEquipo/nuevo_producto.html", {'form': form})

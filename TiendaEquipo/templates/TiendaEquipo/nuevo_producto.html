@@ -1,0 +1,26 @@
+{% extends 'TiendaEquipo/base.html' %}
+{% load static %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block javascript %}
+<script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
+{% endblock %}
+
+{% block contenido %}
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-laptop"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Añadir Producto
+        </p>
+    </div>
+</section>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_table}}
+    <input type="submit" value="registrar" >
+</form>
+{% endblock %}
