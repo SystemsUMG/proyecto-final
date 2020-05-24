@@ -1,6 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 # Create your models here.
+
 CATEGORIES_CHOICES = [
         ('Escritorio', (
             ('nuevas', 'Nuevas'),
@@ -60,7 +63,7 @@ class Cliente(models.Model):
     tarjeta = models.CharField(max_length=16)
     clave = models.CharField(max_length=3)
     fecha_tarjeta = models.DateField(verbose_name="Vencimiento")
-    foto = models.ImageField(null=True, blank=True)
+    foto = models.ImageField(null=True, blank=True, upload_to='clientes')
 
     def __str__(self):
         return '%s %s' %(self.apellido, self.nombre)
@@ -111,3 +114,8 @@ class Venta(models.Model):
 
     def __str__(self):
         return '%s' %self.cliente
+
+def foto_delete(sender, instance, **kwargs):
+    instance.foto.delete(False)
+
+post_delete.connect(foto_delete, sender=Cliente)

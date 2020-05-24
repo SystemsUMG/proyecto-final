@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from  django.http import HttpResponse
 from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto, FormularioVenta
-from TiendaEquipo.models import Cliente, Proveedor, Venta
+from TiendaEquipo.models import Cliente, Proveedor, Venta, Producto
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -21,8 +21,15 @@ def nuevo_cliente(request):
 
 @login_required
 def home(request):
-
-    return render(request, "TiendaEquipo/home.html")
+    cantidades = {
+        'administradores': 5,
+        'clientes': Cliente.objects.all(),
+        'proveedores': Proveedor.objects.all(),
+        'productos': Producto.objects.all(),
+        'ventas': Venta.objects.all(),
+        'categorias': 81,
+    }
+    return render(request, "TiendaEquipo/home.html", cantidades)
 
 def redireccion(request):
     return redirect('login')
@@ -66,12 +73,14 @@ def modificar_cliente(request, id):
     data = {
         'form': FormularioCliente(instance=cliente)
     }
+
     if request.method == "POST":
         formulario = FormularioCliente(data=request.POST, instance=cliente, files=request.FILES)
 
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = 'Modificado Correctamente'
+            return redirect("lista_clientes")
+
         data['form'] = FormularioCliente(instance=Cliente.objects.get(id=id))
 
     return render(request, 'TiendaEquipo/modificar_cliente.html', data)

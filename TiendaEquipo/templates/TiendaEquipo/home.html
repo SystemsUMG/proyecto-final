@@ -5,12 +5,12 @@
 
 {% block contenido %}
 <section class="full-width text-center" style="padding: 40px 0;">
-	<h3 class="text-center tittles">RESPONSIVE TILES</h3>
+	<h3 class="text-center tittles">Inicio</h3>
 		<!-- Tiles -->
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    2<br>
+                    {{ administradores }}<br>
                     <small>Administradores</small>
                 </span>
             </div>
@@ -19,7 +19,7 @@
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    71<br>
+                    {{ clientes|length }}<br>
                     <small>Clientes</small>
                 </span>
             </div>
@@ -28,7 +28,7 @@
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    7<br>
+                    {{ proveedores|length }}<br>
                     <small>Proveedores</small>
                 </span>
             </div>
@@ -37,7 +37,7 @@
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    9<br>
+                    {{ categorias }}<br>
                     <small>Categorías</small>
                 </span>
             </div>
@@ -46,16 +46,16 @@
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    121<br>
+                    {{ productos|length }}<br>
                     <small>Productos</small>
                 </span>
             </div>
-            <i class="zmdi zmdi-washing-machine tile-icon"></i>
+            <i class="zmdi zmdi-laptop tile-icon"></i>
         </article>
         <article class="full-width tile">
             <div class="tile-text">
                 <span class="text-condensedLight">
-                    47<br>
+                    {{ ventas|length }}<br>
                     <small>Ventas</small>
                 </span>
             </div>
@@ -63,7 +63,7 @@
         </article>
     </section>
     <section class="full-width" style="margin: 30px 0;">
-        <h3 class="text-center tittles">RESPONSIVE TIMELINE</h3>
+        <h3 class="text-center tittles">Grupo 2</h3>
         <!-- TimeLine -->
         <div id="timeline-c" class="timeline-c">
             <div class="timeline-c-box">

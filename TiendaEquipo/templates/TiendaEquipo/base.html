@@ -29,8 +29,8 @@
 				</div>
 				<figcaption>
 					<span>
-						Nombre Apellido<br>
-						<small>Admin</small>
+						{{ user.first_name }} &nbsp; {{ user.last_name }}<br>
+						<small>{{ user.username }}</small>
 					</span>
 				</figcaption>
 			</figure>
@@ -160,13 +160,11 @@
 				<div class="mdl-tooltip" for="btn-menu">Ocultar / Mostrar Menú</div>
 				<nav class="navBar-options-list">
 					<ul class="list-unstyle">
-						<a href="{% url 'logout' %}">
 							<li class="btn-exit" id="btn-exit">
 								<i class="zmdi zmdi-power"></i>
 								<div class="mdl-tooltip" for="btn-exit">Cerrar Sesión</div>
 							</li>
-						</a>
-						<li class="text-condensedLight noLink" ><small>User Name</small></li>
+						<li class="text-condensedLight noLink" ><small>{{ user.username }}</small></li>
 						<li class="noLink">
 							<figure>
 								<img src="{% static 'TiendaEquipo/assets/img/avatar-male.png' %}" alt="Avatar" class="img-responsive">

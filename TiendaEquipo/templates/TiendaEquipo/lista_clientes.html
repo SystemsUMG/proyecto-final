@@ -44,7 +44,13 @@
                         <li class="full-width divider-menu-h"></li>
                         <div class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
-                                <i class="zmdi zmdi-account mdl-list__item-avatar">{{ p.foto }}</i>
+                                {% if cliente.foto %}
+                                    <div>
+                                        <img src="{{cliente.foto.url}}" alt="Avatar" style="width:40px;height:40px" class=" mdl-list__item-avatar">
+                                    </div>
+                                {% else %}
+                                    <i class="zmdi zmdi-account mdl-list__item-avatar">{{ p.foto }}</i>
+                                {% endif %}
                                 <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
                                 <span class="mdl-list__item-sub-title">DPI: {{ cliente.dpi }}</span>
                                 <span class="mdl-list__item-sub-title">Teléfono: {{ cliente.telefono }}</span>
