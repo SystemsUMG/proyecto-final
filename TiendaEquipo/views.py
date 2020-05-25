@@ -1,34 +1,21 @@
 from django.shortcuts import render, redirect
 from  django.http import HttpResponse
 from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto, FormularioVenta
-from TiendaEquipo.models import Cliente, Proveedor, Venta, Producto
+from TiendaEquipo.models import Cliente, Proveedor, Producto, Venta
 from django.contrib.auth.decorators import login_required
 import datetime
 
-# Create your views here.
-
-def nuevo_cliente(request):
-    if request.method == "POST":
-        form = FormularioCliente(request.POST, files=request.FILES)
-
-        if form.is_valid():
-            form.save()
-            return redirect("lista_clientes")
-
-    else:
-        form = FormularioCliente() 
-
-    return render(request, "TiendaEquipo/nuevo_cliente.html", {'form': form})
+#Creación de Vistas
 
 @login_required
 def home(request):
     cantidades = {
-        'administradores': 5,
         'clientes': Cliente.objects.all(),
         'proveedores': Proveedor.objects.all(),
         'productos': Producto.objects.all(),
         'ventas': Venta.objects.all(),
         'categorias': 38,
+        'facturas': 5,
     }
     return render(request, "TiendaEquipo/home.html", cantidades)
 
@@ -47,6 +34,19 @@ def prueba(request):
         form = FormularioPrueba()  
 
     return render(request, "TiendaEquipo/prueba.html", {'form': form})
+
+def nuevo_cliente(request):
+    if request.method == "POST":
+        form = FormularioCliente(request.POST, files=request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("lista_clientes")
+
+    else:
+        form = FormularioCliente() 
+
+    return render(request, "TiendaEquipo/nuevo_cliente.html", {'form': form})
 
 def lista_clientes(request):
     clientes = Cliente.objects.all()
@@ -93,6 +93,8 @@ def eliminar_cliente(request, id):
     return redirect("lista_clientes")
 
 def proveedores(request):
+    proveedores = Proveedor.objects.all()
+    
     if request.method == "POST":
         form = FormularioProveedor(request.POST)
 
@@ -103,12 +105,13 @@ def proveedores(request):
     else:
         form = FormularioProveedor()
 
-    return render(request, "TiendaEquipo/proveedores.html", {'form': form})
+    return render(request, "TiendaEquipo/proveedores.html", {'form': form, 'proveedores': proveedores})
 
-def inventario(request):
-    productos = Proveedor.objects.all()
-    
-    return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
+def eliminar_proveedor(request, id):
+    proveedor = Proveedor.objects.get(id=id)
+    proveedor.delete()
+
+    return redirect("proveedores")
 
 def nuevo_producto(request):
     if request.method == "POST":
@@ -119,16 +122,25 @@ def nuevo_producto(request):
             producto.fecha_ingreso = datetime.date.today()
             unidades = form.cleaned_data['unidades']
             precio = form.cleaned_data['precio_compra']
+            nombre_prod = form.cleaned_data['nombre_producto']
             producto.precio_total_compra = unidades * precio
-            producto.stock = 5
-            producto.save()
 
-            return redirect("inventario")
+            if Producto.objects.filter(nombre_producto=nombre_prod):
+                return redirect("home")
+
+            else:
+                producto.save()
+                return redirect("inventario")
 
     else:
         form = FormularioProducto()
     
     return render(request, "TiendaEquipo/nuevo_producto.html", {'form': form})
+
+def inventario(request):
+    productos = Producto.objects.all()
+    
+    return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
 
 def ventas(request):
     if request.method == "POST":

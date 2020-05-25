@@ -1,15 +1,11 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
 
-{% block title %} Clientes {% endblock %}
+{% block title %} Modificar Cliente {% endblock %}
 
 {% block javascript %}
 <script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
 <script src="{% static 'TiendaEquipo/js/upload_file.js' %}"></script>
-{% endblock %}
-
-{% block css %}
-    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/upload_file.css' %}">
 {% endblock %}
 
 {% block contenido %}
@@ -40,11 +36,11 @@
                                 {% if field == form.foto %}
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet ">
                                         <div class="demo-card-image mdl-card mdl-shadow--2dp">
-                                            <div class="mdl-card__title mdl-card--expand"><img id="image" style="width:175px;height:175px;" class="margin "></div>
+                                            <div class="mdl-card__title mdl-card--expand"><img id="image" style="width:175px;height:175px;" class="upload-image"></div>
                                             <div class="mdl-card__actions">
                                                 <span class="text-condensedLight" >Foto (Opcional)</span>
-                                                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file text_v" >
-                                                    <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}      
+                                                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file icon-position" >
+                                                    <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}
                                                 </div>
                                                 <span>{{field.errors.as_text }}</span>
                                             </div>

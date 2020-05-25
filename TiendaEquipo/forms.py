@@ -6,8 +6,9 @@ import datetime
 fecha_actual = datetime.date.today() - datetime.timedelta(days=1)
 fecha_futura = datetime.date.today() + datetime.timedelta(days=2190)
 
+#Creacion de Formularios
+
 class FormularioCliente(ModelForm):
-        
     dpi = forms.CharField(
         min_length=13, 
         max_length=13,
@@ -165,9 +166,23 @@ class FormularioProducto(ModelForm):
         label='Precio de Venta',
     )
 
+    descripcion = forms.CharField(
+        widget=forms.Textarea(attrs={'class' : 'mdl-textfield__input'}),
+        label='Descripción',
+    )
+
     class Meta:
         model = Producto
-        fields = ['nombre_producto', 'marca', 'unidades', 'precio_compra', 'precio_venta', 'proveedor', 'categoria', 'foto_producto']
+        fields = ['nombre_producto', 'marca', 'unidades', 'precio_compra', 'precio_venta', 'proveedor', 'categoria', 'foto_producto', 'descripcion']
+
+    def clean_precio_venta(self):
+        compra = self.cleaned_data['precio_compra']
+        venta = self.cleaned_data['precio_venta']
+
+        if compra >= venta:
+            raise forms.ValidationError("El precio de venta no puede ser menor o igual al de compra")
+
+        return venta
     
 class FormularioVenta(ModelForm):
     numeroVenta = forms.CharField(

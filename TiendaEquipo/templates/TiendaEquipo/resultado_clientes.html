@@ -1,12 +1,7 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
 
-{% block title %} Lista Clientes {% endblock %}
-
-{% block javascript %}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="{% static 'TiendaEquipo/js/confirmacion.js' %}"></script>
-{% endblock %}
+{% block title %} Clientes {% endblock %}
 
 {% block contenido %}
 <section class="full-width header-well">
@@ -68,10 +63,10 @@
                                     </span>
                                     <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ cliente.id }}"><i class="zmdi zmdi-more-vert"></i></div>
                                         <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ cliente.id }}">
-                                            <a href="{% url 'modificar_cliente' cliente.id %}" class="subrayado">
+                                            <a href="{% url 'modificar_cliente' cliente.id %}" class="menu-action">
                                                 <li class="mdl-menu__item">Modificar</li>
                                             </a>
-                                            <a href="#" class="subrayado" onclick="confirmarEliminacion({{ cliente.id }})">
+                                            <a href="#" class="menu-action" onclick="confirmarEliminacion({{ cliente.id }})">
                                                 <li class="mdl-menu__item">Eliminar</li>
                                             </a>
                                         </ul>

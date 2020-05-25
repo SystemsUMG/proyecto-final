@@ -1,12 +1,7 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
 
-{% block title %} Lista Clientes {% endblock %}
-
-{% block javascript %}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="{% static 'TiendaEquipo/js/confirmacion.js' %}"></script>
-{% endblock %}
+{% block title %} Clientes {% endblock %}
 
 {% block contenido %}
 <section class="full-width header-well">
@@ -20,7 +15,7 @@
         </p>
     </div>
 </section>
-<div class="mdl-tabs__panel is-active" id="tabListClient">
+<div class="mdl-tabs__panel" id="tabListClient">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
             <div class="full-width panel mdl-shadow--2dp">
@@ -41,31 +36,31 @@
                     </form>
                     <div class="mdl-list">                       
                         {% for cliente in clientes %}
-                        <li class="full-width divider-menu-h"></li>
-                        <div class="mdl-list__item mdl-list__item--two-line">
-                            <span class="mdl-list__item-primary-content">
-                                {% if cliente.foto %}
-                                    <div>
-                                        <img src="{{cliente.foto.url}}" alt="Avatar" style="width:40px;height:40px" class=" mdl-list__item-avatar">
-                                    </div>
-                                {% else %}
-                                    <i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-                                {% endif %}
-                                <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
-                                <span class="mdl-list__item-sub-title">DPI: {{ cliente.dpi }}</span>
-                                <span class="mdl-list__item-sub-title">Teléfono: {{ cliente.telefono }}</span>
-                            </span>
-                            <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ cliente.id }}"><i class="zmdi zmdi-more-vert"></i></div>
-                            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ cliente.id }}">
-                                <a href="{% url 'modificar_cliente' cliente.id %}" class="subrayado">
-                                    <li class="mdl-menu__item">Modificar</li>
-                                </a>
-                                <a href="#" class="subrayado" onclick="confirmarEliminacion({{ cliente.id }})">
-                                    <li class="mdl-menu__item">Eliminar</li>
-                                </a>
-                            </ul>
-                        </div>                   
-                    {% endfor %}
+                            <li class="full-width divider-menu-h"></li>
+                            <div class="mdl-list__item mdl-list__item--two-line">
+                                <span class="mdl-list__item-primary-content">
+                                    {% if cliente.foto %}
+                                        <div>
+                                            <img src="{{cliente.foto.url}}" alt="Avatar" style="width:40px;height:40px" class=" mdl-list__item-avatar">
+                                        </div>
+                                    {% else %}
+                                        <i class="zmdi zmdi-account mdl-list__item-avatar"></i>
+                                    {% endif %}
+                                    <span>{{ cliente.nombre }} {{ cliente.apellido }}</span>
+                                    <span class="mdl-list__item-sub-title">DPI: {{ cliente.dpi }}</span>
+                                    <span class="mdl-list__item-sub-title">Teléfono: {{ cliente.telefono }}</span>
+                                </span>
+                                <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ cliente.id }}"><i class="zmdi zmdi-more-vert"></i></div>
+                                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ cliente.id }}">
+                                    <a href="{% url 'modificar_cliente' cliente.id %}" class="menu-action">
+                                        <li class="mdl-menu__item">Modificar</li>
+                                    </a>
+                                    <a href="#" class="menu-action" onclick="confirmarEliminacion({{ cliente.id }})">
+                                        <li class="mdl-menu__item">Eliminar</li>
+                                    </a>
+                                </ul>
+                            </div>                   
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="full-width panel-content"><br><br><br></div>

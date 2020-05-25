@@ -31,11 +31,11 @@
                 <tbody>
                     {% for producto in productos %}
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">{{ producto.nombre }}</td>
-                            <td>{{ producto.nit }}</td>
-                            <td>{{ producto.telefono }}</td>
-                            <td>{{ producto.correo }}</td>
-                            <td>{{ producto.direccion }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ producto.nombre_producto }}</td>
+                            <td>{{ producto.id }}</td>
+                            <td>{{ producto.unidades }}</td>
+                            <td>Q.{{ producto.precio_venta }}</td>
+                            <td>{{ producto.proveedor }}</td>
                             <td> <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ producto.id }}"><i class="zmdi zmdi-more-vert"></i></div>
                                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ producto.id }}">
                                     <a href="" class="subrayado">
@@ -53,5 +53,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

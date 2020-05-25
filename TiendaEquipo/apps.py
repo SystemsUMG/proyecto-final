@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class TiendaequipoConfig(AppConfig):
-    name = 'TiendaEquipo'
+    name = 'Sistema Venta de Computadoras'
+    verbose_name = 'Ventas de Computadoras'

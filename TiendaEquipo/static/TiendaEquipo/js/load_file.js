@@ -1,4 +1,4 @@
-document.getElementById("id_foto").onchange = function () {
+document.getElementById("id_foto_producto").onchange = function () {
     var reader = new FileReader();
 
     reader.onload = function (e) {

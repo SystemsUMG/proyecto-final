@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
-# Create your models here.
+#Creacion de Modelos (Tablas BBDD)
 
 CATEGORIES_CHOICES = [
         ('Escritorio', (
@@ -78,27 +78,26 @@ class Prueba(models.Model):
     
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=25, unique=True)
-    direccion = models.CharField(max_length=45)
-    telefono = models.IntegerField()
+    direccion = models.CharField(max_length=45, verbose_name="Dirección")
+    telefono = models.IntegerField(verbose_name="Teléfono")
     correo = models.EmailField()
-    nit = models.CharField(max_length=9)
+    nit = models.CharField(max_length=9, verbose_name="NIT")
     
     def __str__(self):
         return self.nombre
 
 class Producto(models.Model):
-    nombre_producto = models.CharField(max_length=50, unique=True)
+    nombre_producto = models.CharField(max_length=50, verbose_name="Producto")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     marca = models.CharField(max_length=50)
-    categoria = models.CharField(max_length=35, choices=CATEGORIES_CHOICES, default='NoteBook')
+    categoria = models.CharField(max_length=35, choices=CATEGORIES_CHOICES, default='NoteBook', verbose_name="Categoría")
     unidades = models.IntegerField()
-    precio_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
-    precio_venta = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
-    precio_total_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
-    stock = models.IntegerField(null=True, blank=True)
-    fecha_ingreso = models.DateField()
-    foto_producto = models.ImageField()
-    descripcion = models.CharField(max_length=500)
+    precio_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True, verbose_name="Precio de Compra")
+    precio_venta = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True, verbose_name="Precio de Venta")
+    precio_total_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True, verbose_name="Precio Total")
+    fecha_ingreso = models.DateField(verbose_name="Fecha")
+    foto_producto = models.ImageField(verbose_name="Foto", upload_to='productos')
+    descripcion = models.CharField(max_length=500, verbose_name="Descripción")
 
     def __str__(self):
         return self.nombre_producto
@@ -116,5 +115,8 @@ class Venta(models.Model):
 
 def foto_delete(sender, instance, **kwargs):
     instance.foto.delete(False)
-
 post_delete.connect(foto_delete, sender=Cliente)
+
+def foto_producto_delete(sender, instance, **kwargs):
+    instance.foto_producto.delete(False)
+post_delete.connect(foto_producto_delete, sender=Producto)

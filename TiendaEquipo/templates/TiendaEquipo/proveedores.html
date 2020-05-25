@@ -1,7 +1,7 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
 
-{% block title %} Clientes {% endblock %}
+{% block title %} Proveedores {% endblock %}
 
 {% block javascript %}
 <script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
@@ -14,44 +14,77 @@
     </div>
     <div class="full-width header-well-text">
         <p class="text-condensedLight">
-            Añadir Proveedor
+            Ingrese datos del proveedor
         </p>
     </div>
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col">
-            <div class="full-width panel mdl-shadow--2dp">
-                <div class="full-width panel-tittle bg-primary text-center tittles">
-                    Nuevo Proveedor
-                </div>
-                <div class="full-width panel-content">
-                    <form action="" method="POST">{% csrf_token %}
-                        <div class="mdl-grid">
-                           <div class="mdl-cell mdl-cell--12-col">
-                                <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Proveedor</legend><br>
-                            </div>
-                            {% for field in form %}
-                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label">{{ field.label }}</label>
-                                        {{ field }}
-                                        <span>{{ field.errors.as_text }}</span>                
-                                    </div>
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewProvider" class="mdl-tabs__tab is-active">Nuevo</a>
+        <a href="#tabListProvider" class="mdl-tabs__tab">Lista</a>
+    </div>
+    <div class="mdl-tabs__panel is-active" id="tabNewProvider">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Nuevo Proveedor
+                    </div>
+                    <div class="full-width panel-content">
+                        <form action="" method="POST">{% csrf_token %}
+                            <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Proveedor</legend><br>
                                 </div>
-                            {% endfor %}
-                        </div>
-                        <p class="text-center">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
-                                <i class="zmdi zmdi-truck"></i>
-                            </button>
-                            <div class="mdl-tooltip" for="btn-addClient">Añadir Proveedor</div>
-                        </p>
-                    </form>
+                                {% for field in form %}
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <label class="mdl-textfield__label">{{ field.label }}</label>
+                                            {{ field }}
+                                            <span>{{ field.errors.as_text }}</span>                
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <p class="text-center">
+                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                                    <i class="zmdi zmdi-truck"></i>
+                                </button>
+                                <div class="mdl-tooltip" for="btn-addClient">Añadir Proveedor</div>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="mdl-tabs__panel" id="tabListProvider">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Lista de Proveedores
+                    </div>
+                    <div class="full-width panel-content">
+                        <div class="mdl-list">
+                            {% for proveedor in proveedores %}
+                                <li class="full-width divider-menu-h"></li>
+                                <div class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-truck mdl-list__item-avatar"></i>
+                                        <span> {{ proveedor.nombre }}</span>
+                                        <span class="mdl-list__item-sub-title">Correo: {{ proveedor.correo }}</span>
+                                        <span class="mdl-list__item-sub-title">Teléfono: {{ proveedor.telefono }}</span>
+                                    </span>
+                                    <a class="mdl-list__item-secondary-action" href="#" onclick="eliminarProveedor({{ proveedor.id }})"><i class="zmdi zmdi-delete"></i></a>
+                                </div>                   
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

@@ -860,53 +860,78 @@ html, body{
 .zmdi-search {
 	color: #00838f;
 }
-
 .header-well-icon .zmdi-accounts-list-alt {
 	color: #70c16c;
 }
-
 .header-well-icon .zmdi-account-add {
 	color: #659bd6;
-  }
-
+}
 .header-well-icon .zmdi-account-box {
 	color: #659bd6;
-  }
-
+}
 .mdl-button--icon .zmdi-more-vert {
 	color: #62757f;
 }
-
 .header-well-icon .zmdi-truck {
 	color: #659bd6;
 }
-
 .header-well-icon .zmdi-laptop {
 	color: #659bd6;
 }
-
 .header-well-icon .zmdi-shopping-cart {
 	color: #659bd6;
 }
-
 .header-well-icon .zmdi-store {
 	color: #70c16c;
 }
 
-.subrayado {
+/*======= Subir Archivos*/
+.menu-action {
 	text-decoration: none;
 }
-
-.margin{
+.upload-image {
 	box-shadow: 2px 2px 5px rgb(133, 116, 116);
 	margin-left: 22px;
 	background-color: darkgray;
 	border-radius: 200px;
 }
-
-.foto_producto{
+.upload-image-product {
 	box-shadow: 2px 2px 5px rgb(133, 116, 116);
 	margin-left: 22px;
-	background-color: darkgray;
+	background-color: #b6ffff;
 	border-radius: 20px;
+}
+.mdl-button--file input {
+    cursor: pointer;
+    height: 100%;
+    right: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 300px;
+    z-index: 4;
+}
+.mdl-textfield--file .mdl-textfield__input {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+}
+.icon-position {
+    float: right;
+}
+.demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+}
+.demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: #9e9e9e;
+}
+.mdl-card__actions .text-condensedLight {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+}
+.mdl-textfield:not(.is-dirty) input::-webkit-datetime-edit {
+    color: transparent; 
 }

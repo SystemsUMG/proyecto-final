@@ -6,33 +6,50 @@
 {% block contenido %}
 <section class="full-width text-center" style="padding: 40px 0;">
 	<h3 class="text-center tittles">Inicio</h3>
-		<!-- Tiles -->
+        <!-- Tiles -->
         <article class="full-width tile">
-            <div class="tile-text">
-                <span class="text-condensedLight">
-                    {{ administradores }}<br>
-                    <small>Administradores</small>
-                </span>
-            </div>
-            <i class="zmdi zmdi-account tile-icon"></i>
+            <a href="{% url 'lista_clientes'%}">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        {{ clientes|length }}<br>
+                        <small>Clientes</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-accounts-alt tile-icon"></i>
+            </a>
         </article>
         <article class="full-width tile">
-            <div class="tile-text">
-                <span class="text-condensedLight">
-                    {{ clientes|length }}<br>
-                    <small>Clientes</small>
-                </span>
-            </div>
-            <i class="zmdi zmdi-accounts-alt tile-icon"></i>
+            <a href="{% url 'proveedores'%}">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        {{ proveedores|length }}<br>
+                        <small>Proveedores</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-truck tile-icon"></i>
+            </a>
         </article>
         <article class="full-width tile">
-            <div class="tile-text">
-                <span class="text-condensedLight">
-                    {{ proveedores|length }}<br>
-                    <small>Proveedores</small>
-                </span>
-            </div>
-            <i class="zmdi zmdi-truck tile-icon"></i>
+            <a href="{% url 'inventario'%}">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        {{ productos|length }}<br>
+                        <small>Productos</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-laptop tile-icon"></i>
+            </a>
+        </article>
+        <article class="full-width tile">
+            <a href="{% url 'ventas'%}">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        {{ ventas|length }}<br>
+                        <small>Ventas</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-shopping-cart tile-icon"></i>
+            </a>
         </article>
         <article class="full-width tile">
             <div class="tile-text">
@@ -44,22 +61,15 @@
             <i class="zmdi zmdi-label tile-icon"></i>
         </article>
         <article class="full-width tile">
-            <div class="tile-text">
-                <span class="text-condensedLight">
-                    {{ productos|length }}<br>
-                    <small>Productos</small>
-                </span>
-            </div>
-            <i class="zmdi zmdi-laptop tile-icon"></i>
-        </article>
-        <article class="full-width tile">
-            <div class="tile-text">
-                <span class="text-condensedLight">
-                    {{ ventas|length }}<br>
-                    <small>Ventas</small>
-                </span>
-            </div>
-            <i class="zmdi zmdi-shopping-cart tile-icon"></i>
+            <a href="#!">
+                <div class="tile-text">
+                    <span class="text-condensedLight">
+                        {{ facturas }}<br>
+                        <small>Facturas</small>
+                    </span>
+                </div>
+                <i class="zmdi zmdi-file-text tile-icon"></i>
+            </a>
         </article>
     </section>
     <section class="full-width" style="margin: 30px 0;">

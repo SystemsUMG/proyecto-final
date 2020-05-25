@@ -1,16 +1,11 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
 
-{% block title %} Clientes {% endblock %}
+{% block title %} Añadir Producto {% endblock %}
 
 {% block javascript %}
 <script src="{% static 'TiendaEquipo/js/textfield.js' %}"></script>
-<script src="{% static 'TiendaEquipo/js/upload_file.js' %}"></script>
-{% endblock %}
-
-{% block css %}
-    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/upload_file.css' %}">
-    <link rel="stylesheet" href="{% static 'TiendaEquipo/css/date_field.css' %}">
+<script src="{% static 'TiendaEquipo/js/load_file.js' %}"></script>
 {% endblock %}
 
 {% block contenido %}
@@ -20,7 +15,7 @@
     </div>
     <div class="full-width header-well-text">
         <p class="text-condensedLight">
-            Añadir Producto
+            Ingrese un nuevo producto
         </p>
     </div>
 </section>
@@ -35,19 +30,19 @@
                     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
                         <div class="mdl-grid">
                            <div class="mdl-cell mdl-cell--12-col">
-                                <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Cliente</legend><br>
+                                <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Producto</legend><br>
                             </div>
+                            {{ form.errors.as_text }} 
                             {% for field in form %}
                                 {% if field == form.foto_producto %}
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet ">
                                         <div class="demo-card-image mdl-card mdl-shadow--2dp">
-                                            <div class="mdl-card__title mdl-card--expand"><img id="image_product" style="width:175px;height:175px;" class="foto_producto"></div>
+                                            <div class="mdl-card__title mdl-card--expand"><img id="image" style="width:175px;height:175px;" class="upload-image-product"></div>
                                             <div class="mdl-card__actions">
                                                 <span class="text-condensedLight">Foto</span>
-                                                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file text_v" >
+                                                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file icon-position" >
                                                     <i class="zmdi zmdi-attachment-alt"></i>{{form.foto_producto}}      
                                                 </div>
-                                                <span>{{field.errors.as_text }}</span>
                                             </div>
                                         </div>                                        
                                     </div>
@@ -58,8 +53,7 @@
                                                 <label class="mdl-textfield__label"> Categoría </label>
                                                 <br>
                                             </div>
-                                            {{ form.categoria }}
-                                            <span >{{ form.errors.as_text }}</span> 
+                                            {{ form.categoria }} 
                                         </div>
                                     {% else %}
                                         {% if field == form.proveedor %}
@@ -69,14 +63,12 @@
                                                     <br>
                                                 </div>
                                                 {{ form.proveedor }}
-                                                <span >{{ form.errors.as_text }}</span> 
                                             </div>
                                         {% else %}
                                             <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                                     <label class="mdl-textfield__label">{{ field.label }}</label>
-                                                    {{ field }}
-                                                    <span>{{ field.errors.as_text }}</span>                
+                                                    {{ field }}          
                                                 </div>
                                             </div>
                                         {% endif %} 
