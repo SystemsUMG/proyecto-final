@@ -87,7 +87,6 @@ class Proveedor(models.Model):
         return self.nombre
 
 class Producto(models.Model):
-    codigo_barras = models.IntegerField()
     nombre_producto = models.CharField(max_length=50, unique=True)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     marca = models.CharField(max_length=50)
@@ -96,7 +95,7 @@ class Producto(models.Model):
     precio_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
     precio_venta = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
     precio_total_compra = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
-    stock = models.IntegerField()
+    stock = models.IntegerField(null=True, blank=True)
     fecha_ingreso = models.DateField()
     foto_producto = models.ImageField()
     descripcion = models.CharField(max_length=500)

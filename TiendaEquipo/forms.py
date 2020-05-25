@@ -133,10 +133,41 @@ class FormularioProveedor(ModelForm):
         fields = '__all__'
 
 class FormularioProducto(ModelForm):
-    
+    nombre_producto = forms.CharField(
+        max_length=25,
+        min_length=2,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Producto',
+    )
+
+    marca = forms.CharField(
+        max_length=25,
+        min_length=2,
+        widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'})
+    )
+
+    unidades = forms.IntegerField(
+        max_value=100,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'})
+    )
+
+    precio_compra = forms.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Precio de Compra',
+    )
+
+    precio_venta = forms.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        label='Precio de Venta',
+    )
+
     class Meta:
         model = Producto
-        fields = '__all__'
+        fields = ['nombre_producto', 'marca', 'unidades', 'precio_compra', 'precio_venta', 'proveedor', 'categoria', 'foto_producto']
     
 class FormularioVenta(ModelForm):
     numeroVenta = forms.CharField(

@@ -3,6 +3,7 @@ from  django.http import HttpResponse
 from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto, FormularioVenta
 from TiendaEquipo.models import Cliente, Proveedor, Venta, Producto
 from django.contrib.auth.decorators import login_required
+import datetime
 
 # Create your views here.
 
@@ -114,7 +115,14 @@ def nuevo_producto(request):
         form = FormularioProducto(request.POST, files=request.FILES)
 
         if form.is_valid():
-            form.save()
+            producto = form.save(commit=False)
+            producto.fecha_ingreso = datetime.date.today()
+            unidades = form.cleaned_data['unidades']
+            precio = form.cleaned_data['precio_compra']
+            producto.precio_total_compra = unidades * precio
+            producto.stock = 5
+            producto.save()
+
             return redirect("inventario")
 
     else:

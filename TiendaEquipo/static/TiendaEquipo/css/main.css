@@ -903,3 +903,10 @@ html, body{
 	background-color: darkgray;
 	border-radius: 200px;
 }
+
+.foto_producto{
+	box-shadow: 2px 2px 5px rgb(133, 116, 116);
+	margin-left: 22px;
+	background-color: darkgray;
+	border-radius: 20px;
+}
