@@ -39,14 +39,17 @@
                             </div>
                             {% for field in form %}
                                 {% if field == form.foto %}
-                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
-                                            <input class="mdl-textfield__input" placeholder="Foto (Opcional)" type="text" id="uploadFile" readonly/>
-                                            <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
-                                                <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}
+                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet ">
+                                        <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                                            <div class="mdl-card__title mdl-card--expand"><img id="image" style="width:175px;height:175px;" class="margin "></div>
+                                            <div class="mdl-card__actions">
+                                                <span class="text-condensedLight" >Foto (Opcional)</span>
+                                                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file text_v" >
+                                                    <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}      
+                                                </div>
                                                 <span>{{field.errors.as_text }}</span>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 {% else %}
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">

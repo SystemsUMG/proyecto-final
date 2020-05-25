@@ -12,6 +12,20 @@
     box-sizing: border-box;
     width: calc(100% - 32px);
   }
-  .mdl-textfield--file .mdl-button--file {
-    right: 0;
+  .text_v {
+    float: right;
+  }
+  .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+  }
+  .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: #9e9e9e;
+  }
+  .mdl-card__actions .text-condensedLight {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
   }

@@ -269,6 +269,9 @@ html, body{
 .bg-info {
     background-color: #5bc0de !important;
 }
+.bg-img {
+	background-color: #ffca28 !important;
+}
 /*=============Estilos login*/
 .login-wrap{
 	height: 100%;
@@ -886,6 +889,17 @@ html, body{
 	color: #659bd6;
 }
 
+.header-well-icon .zmdi-store {
+	color: #70c16c;
+}
+
 .subrayado {
 	text-decoration: none;
+}
+
+.margin{
+	box-shadow: 2px 2px 5px rgb(133, 116, 116);
+	margin-left: 22px;
+	background-color: darkgray;
+	border-radius: 200px;
 }

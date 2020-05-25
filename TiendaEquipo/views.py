@@ -27,7 +27,7 @@ def home(request):
         'proveedores': Proveedor.objects.all(),
         'productos': Producto.objects.all(),
         'ventas': Venta.objects.all(),
-        'categorias': 81,
+        'categorias': 38,
     }
     return render(request, "TiendaEquipo/home.html", cantidades)
 
