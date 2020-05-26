@@ -109,6 +109,7 @@ class Venta(models.Model):
     fecha= models.DateField(verbose_name="Fecha")
     producto= models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
+    total = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
         return '%s' %self.cliente

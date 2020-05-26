@@ -100,7 +100,7 @@ def proveedores(request):
 
         if form.is_valid():
             form.save()
-            return redirect("inventario")
+            return redirect("proveedores")
 
     else:
         form = FormularioProveedor()
@@ -143,14 +143,28 @@ def inventario(request):
     return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
 
 def ventas(request):
+    ventas = Venta.objects.all()
+
     if request.method == "POST":
         form = FormularioVenta(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect("inventario")
+            venta = form.save(commit=False)
+            venta.fecha = datetime.date.today()
+            cantidad = form.cleaned_data['cantidad']
+            nombre = form.cleaned_data['producto']
+            producto = Producto.objects.get(nombre_producto=nombre)
+            venta.total = cantidad * producto.precio_venta
+            venta.save()
+            return redirect("ventas")
 
     else:
         form = FormularioVenta() 
 
-    return render(request, "TiendaEquipo/ventas.html", {'form': form})
+    return render(request, "TiendaEquipo/ventas.html", {'form': form, 'ventas': ventas})
+
+def eliminar_venta(request, id):
+    venta = Venta.objects.get(id=id)
+    venta.delete()
+
+    return redirect("ventas")

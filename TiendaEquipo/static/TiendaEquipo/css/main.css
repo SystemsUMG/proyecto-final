@@ -860,6 +860,12 @@ html, body{
 .zmdi-search {
 	color: #00838f;
 }
+.zmdi-delete {
+	color: #00838f;
+}
+.mdl-js-ripple-effect .zmdi-file-text {
+	color: #2e6da4;
+}
 .header-well-icon .zmdi-accounts-list-alt {
 	color: #70c16c;
 }

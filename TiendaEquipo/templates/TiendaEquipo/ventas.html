@@ -18,13 +18,59 @@
         </p>
     </div>
 </section>
-<div class="full-width divider-menu-h"></div>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Nueva</a>
-        <a href="#tabListClient" class="mdl-tabs__tab">Lista</a>
+        <a href="#tabListSales" class="mdl-tabs__tab is-active">Lista</a>
+        <a href="#tabNewSale" class="mdl-tabs__tab">Nueva</a>
     </div>
-    <div class="mdl-tabs__panel is-active" id="tabNewClient">
+    <div class="mdl-tabs__panel is-active" id="tabListSales">
+    <div class="full-width divider-menu-h"></div>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <div class="full-width panel-tittle bg-primary text-center tittles">
+                    Lista de Ventas
+                </div>
+                <div class="table-responsive">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Número</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Fecha</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Cliente</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Producto</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Pago</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Total</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for venta in ventas %}
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">{{ venta.numeroVenta }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.fecha }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.cliente }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.producto }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.pago|title }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">Q.{{ venta.total }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center">
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-invoice">
+                                            <i class="zmdi zmdi-file-text"></i>
+                                        </button>
+                                        <div class="mdl-tooltip" for="btn-invoice">Generar Factura</div>
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-delete" onclick="eliminarVenta({{ venta.id }})">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                        <div class="mdl-tooltip" for="btn-delete">Eliminar Venta</div>
+                                    </td>
+                                </tr>          
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    
+    </div>  
+    <div class="mdl-tabs__panel" id="tabNewSale">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col">
                 <div class="full-width panel mdl-shadow--2dp">
@@ -32,60 +78,60 @@
                         Nueva Venta
                     </div>
                     <div class="full-width panel-content">
-                        <form action="" method="POST" >{% csrf_token %}
+                        <form action="" method="POST">{% csrf_token %}
                             <div class="mdl-grid">
-                               <div class="mdl-cell mdl-cell--12-col">
-                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Cliente</legend><br>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos de Venta</legend><br>
                                 </div>
-                                {% for field in form %}
-                                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <label class="mdl-textfield__label">{{ field.label }}</label>
-                                            {{ field }}
-                                            {{field.errors }}                
-                                        </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="NameProduct">{{ form.numeroVenta.label }}</label>
+                                        {{ form.numeroVenta }}
+                                        <span >{{ form.errors.as_text }}</span>
                                     </div>
-                                {% endfor %}
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="StrockProduct">{{ form.cantidad.label }}</label>
+                                        {{ form.cantidad }}
+                                        <span class="mdl-textfield__error">{{ form.errors.as_text }}</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="discountProduct">{{ form.pago.label }}</label><br>
+                                    </div>
+                                    {{ form.pago }}
+                                    <span >{{ form.errors.as_text }}</span>	
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="PriceProduct">{{ form.producto.label }}</label><br> 
+                                    </div>
+                                    {{ form.producto }}
+                                    <span>{{ form.errors.as_text }}</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="discountProduct">{{ form.cliente.label }} </label><br>
+                                    </div>
+                                    {{ form.cliente }}
+                                    <span >{{ form.errors.as_text }}</span> 
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <p class="text-center"><br>
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addSale">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                        </button>
+                                        <div class="mdl-tooltip" for="btn-addSale">Añadir Venta</div>
+                                    </p>
+                                </div>	
                             </div>
-                            <p class="text-center">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
-                                    <i class="zmdi zmdi-shopping-cart"></i>
-                                </button>
-                                <div class="mdl-tooltip" for="btn-addClient">Añadir Venta</div>
-                            </p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="mdl-tabs__panel" id="tabListClient">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-                <div class="table-responsive">
-                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Date</th>
-                                <th>Client</th>
-                                <th>Payment</th>
-                                <th>Total</th>
-                                <th>Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">11/04/2016</td>
-                                <td>Client name</td>
-                                <td>Credit</td>
-                                <td>$77</td>
-                                <td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>    
     </div>
 </div>
 {% endblock %}

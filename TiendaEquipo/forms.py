@@ -188,15 +188,14 @@ class FormularioVenta(ModelForm):
     numeroVenta = forms.CharField(
        min_length=1,
        max_length=3,
-       widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'})
+       widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+       label='Número de Venta'
     )
 
-    cantidad = forms.CharField(
-        min_length=1,
-        max_length=3,
+    cantidad = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'})
     )
 
     class Meta:
         model = Venta
-        fields = '__all__'
+        fields = ['numeroVenta', 'cantidad', 'producto', 'cliente', 'pago']

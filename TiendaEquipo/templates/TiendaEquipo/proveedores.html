@@ -76,7 +76,9 @@
                                         <span class="mdl-list__item-sub-title">Correo: {{ proveedor.correo }}</span>
                                         <span class="mdl-list__item-sub-title">Teléfono: {{ proveedor.telefono }}</span>
                                     </span>
-                                    <a class="mdl-list__item-secondary-action" href="#" onclick="eliminarProveedor({{ proveedor.id }})"><i class="zmdi zmdi-delete"></i></a>
+                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-delete" onclick="eliminarProveedor({{ proveedor.id }})">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
                                 </div>                   
                             {% endfor %}
                         </div>
