@@ -1,5 +1,5 @@
 from django import forms
-from TiendaEquipo.models import Cliente, Prueba, Proveedor, Producto, Venta
+from TiendaEquipo.models import Cliente, Proveedor, Producto, Venta
 from django.forms import ModelForm
 import datetime
 
@@ -78,23 +78,6 @@ class FormularioCliente(ModelForm):
     class Meta:
         model = Cliente
         fields = '__all__'
-
-class FormularioPrueba(ModelForm):
-    prueba1 = forms.IntegerField(
-        max_value=999, 
-        min_value=000, 
-        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
-        label = 'Código',
-    )
-
-    prueba2 = forms.EmailField( 
-        widget=forms.EmailInput(attrs={'class' : 'mdl-textfield__input'}),
-        label='Email',
-    )
-
-    class Meta:
-        model = Prueba
-        fields = ['prueba1', 'prueba2', 'prueba3']
 
 class FormularioProveedor(ModelForm):
     nombre = forms.CharField(

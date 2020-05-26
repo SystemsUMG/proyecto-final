@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from  django.http import HttpResponse
-from TiendaEquipo.forms import FormularioCliente, FormularioPrueba, FormularioProveedor, FormularioProducto, FormularioVenta
+from TiendaEquipo.forms import FormularioCliente, FormularioProveedor, FormularioProducto, FormularioVenta
 from TiendaEquipo.models import Cliente, Proveedor, Producto, Venta
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -21,19 +21,6 @@ def home(request):
 
 def redireccion(request):
     return redirect('login')
-
-def prueba(request):
-    if request.method == "POST":
-        form = FormularioPrueba(request.POST, files=request.FILES)
-
-        if form.is_valid():
-            form.save()
-            return redirect("home")
-
-    else:
-        form = FormularioPrueba()  
-
-    return render(request, "TiendaEquipo/prueba.html", {'form': form})
 
 def nuevo_cliente(request):
     if request.method == "POST":

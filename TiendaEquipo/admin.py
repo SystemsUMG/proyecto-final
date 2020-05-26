@@ -1,5 +1,5 @@
 from django.contrib import admin
-from TiendaEquipo.models import Cliente, Prueba, Proveedor, Producto, Venta
+from TiendaEquipo.models import Cliente, Proveedor, Producto, Venta
 
 # Register your models here.
 
@@ -21,7 +21,6 @@ class VentaAdmin(admin.ModelAdmin):
     search_fields= ("producto", "cliente", "pago")
 
 admin.site.register(Cliente, ClienteAdmin)
-admin.site.register(Prueba)
 admin.site.register(Proveedor, ProveedorAdmin)
 admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Venta, VentaAdmin)

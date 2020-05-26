@@ -1,9 +1,8 @@
 from django.urls import path
-from TiendaEquipo.views import home, redireccion, prueba, nuevo_cliente, lista_clientes, busqueda_clientes, modificar_cliente, eliminar_cliente, proveedores, modificar_proveedor, eliminar_proveedor, nuevo_producto, inventario, productos, anadir_unidades, modificar_producto, busqueda_productos, eliminar_producto, ventas, eliminar_venta, factura
+from TiendaEquipo.views import home, redireccion, nuevo_cliente, lista_clientes, busqueda_clientes, modificar_cliente, eliminar_cliente, proveedores, modificar_proveedor, eliminar_proveedor, nuevo_producto, inventario, productos, anadir_unidades, modificar_producto, busqueda_productos, eliminar_producto, ventas, eliminar_venta, factura
 urlpatterns = [
     path('home/', home, name='home'),
     path('', redireccion, name='redirect'),
-    path('prueba/', prueba, name='prueba'),
     path('nuevo-cliente/', nuevo_cliente, name ='nuevo_cliente'),
     path('lista-clientes/', lista_clientes, name='lista_clientes'),
     path('busqueda-clientes/', busqueda_clientes, name="busqueda_clientes"),
