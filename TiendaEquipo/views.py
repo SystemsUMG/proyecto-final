@@ -107,6 +107,23 @@ def proveedores(request):
 
     return render(request, "TiendaEquipo/proveedores.html", {'form': form, 'proveedores': proveedores})
 
+def modificar_proveedor(request, id):
+    proveedor = Proveedor.objects.get(id=id)
+    data = {
+        'form': FormularioProveedor(instance=proveedor)
+    }
+
+    if request.method == "POST":
+        formulario = FormularioProveedor(data=request.POST, instance=proveedor, files=request.FILES)
+
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("proveedores")
+
+        data['form'] = FormularioProveedor(instance=Proveedor.objects.get(id=id))
+
+    return render(request, 'TiendaEquipo/modificar_proveedor.html', data)
+
 def eliminar_proveedor(request, id):
     proveedor = Proveedor.objects.get(id=id)
     proveedor.delete()
@@ -149,7 +166,29 @@ def inventario(request):
     return render(request, "TiendaEquipo/inventario.html", {'productos': productos, 'contador': contador})
 
 def productos(request):
-    return render(request, "TiendaEquipo/productos.html")
+    productos = Producto.objects.all()
+
+    return render(request, "TiendaEquipo/productos.html", {'productos': productos})
+
+def anadir_unidades(request, id):
+    if request.GET["cant"]:
+        get = request.GET["cant"]
+        nuevas_unidades = int(get)
+        producto = Producto.objects.get(id=id)
+        unidades = producto.unidades
+        total_unidades = unidades + nuevas_unidades
+        producto.unidades = total_unidades
+        producto.save()
+
+    else:
+        nuevas_unidades = 0
+        producto = Producto.objects.get(id=id)
+        unidades = producto.unidades
+        total_unidades = unidades + nuevas_unidades
+        producto.unidades = total_unidades
+        producto.save()
+
+    return redirect("productos")
 
 def modificar_producto(request, id):
     producto = Producto.objects.get(id=id)
@@ -167,6 +206,22 @@ def modificar_producto(request, id):
         data['form'] = FormularioProducto(instance=Producto.objects.get(id=id))
 
     return render(request, 'TiendaEquipo/modificar_producto.html', data)
+
+def busqueda_productos(request):
+    if request.GET["prod"]:
+        producto = request.GET["prod"]
+
+        if len(producto) > 50:
+            mensaje = "Nombre de Producto Demasiado Largo"
+
+        else:
+            productos = Producto.objects.filter(nombre_producto__icontains = producto)
+            return render(request, "TiendaEquipo/resultado_productos.html", {"productos": productos, "query": producto})
+    
+    else:
+        mensaje = "Por Favor Ingrese Datos al Realizar la Búsqueda"
+
+    return render(request, "TiendaEquipo/resultado_productos.html", {"mensaje": mensaje})
 
 def eliminar_producto(request, id):
     producto = Producto.objects.get(id=id)
@@ -190,7 +245,7 @@ def ventas(request):
             unidades = producto.unidades
 
             if cantidad > unidades:
-                mensaje = 'No existen suficientes unidades, por favor seleccione una cantidad menor'
+                mensaje = f'No existen suficientes unidades, por favor ingrese una cantidad menor o igual a {unidades}'
 
             else:
                 venta.total = cantidad * producto.precio_venta
@@ -207,6 +262,22 @@ def ventas(request):
 
 def eliminar_venta(request, id):
     venta = Venta.objects.get(id=id)
+    nombre = venta.producto
+    producto = Producto.objects.get(nombre_producto=nombre)
+    unidades = producto.unidades
+    cantidad = venta.cantidad
+    nuevas_unidades = unidades + cantidad
+    producto.unidades = nuevas_unidades
+    producto.save()
     venta.delete()
-
     return redirect("ventas")
+
+def factura(request, id):
+    ventas = Venta.objects.get(id=id) 
+
+    data = {
+        'factura':ventas 
+    }
+
+
+    return render(request, 'TiendaEquipo/factura.html', data)

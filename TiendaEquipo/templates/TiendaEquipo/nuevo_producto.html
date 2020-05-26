@@ -32,7 +32,6 @@
                            <div class="mdl-cell mdl-cell--12-col">
                                 <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Producto</legend><br>
                             </div>
-                            {{ form.errors.as_text }} 
                             {% for field in form %}
                                 {% if field == form.foto_producto %}
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet ">
@@ -75,6 +74,7 @@
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
+                            <span>{{ form.errors }} </span>
                         </div>
                         <p class="text-center">
                             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">

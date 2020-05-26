@@ -16,17 +16,28 @@
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
             <form action="/busqueda-productos/" method="GET">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable text-center">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
-                        <i class="zmdi zmdi-search"></i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" name="prod" id="searchProduct">
-                        <label class="mdl-textfield__label"></label>
+                <div class="mdl-list__item mdl-list__item--two-line">
+                    <div class="mdl-button mdl-button--primary mdl-button--icon">
+                        <a href="{% url 'productos' %}">
+                            <i class="zmdi zmdi-arrow-left"></i>
+                        </a>
+                   </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable text-center">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
+                           <i class="zmdi zmdi-search"></i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="prod" id="searchPoduct">
+                            <label class="mdl-textfield__label"></label>
+                        </div>
                     </div>
                 </div>
             </form>
             <div class="full-width text-center" style="padding: 30px 0;">
+                {% if productos %}
+                <p class="text-condensedLight">
+                    {{productos|length}} Productos <strong>{{query}}</strong> Encontrados
+                </p>
                 {% for producto in productos %}
                 <div class="mdl-card mdl-shadow--2dp full-width product-card">
                     <div class="mdl-card__title">
@@ -41,20 +52,27 @@
                         <form action="/anadir-unidades/{{ producto.id}}/" method="GET">
                             <div class="mdl-cell mdl-cell--1-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label label-position units-label"  style="width: 130x;"> 
-                                
                                 <input type="number" name="cant" id="units" class="mdl-textfield__input">
                                 <label class="mdl-textfield__label" for="units">Añadir Unidades</label>
                                 <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect icon-margin icon-position">
                                     <i class="zmdi zmdi-plus" id="btn-units"></i>
                                 </button>
                               </div>
-                             
                             </div>                           
                         </form>
-                    
                     </div>
+                    </br> {{ mensaje }} 
                 </div>
                 {% endfor %}
+            {% else %}                                
+                <li class="full-width divider-menu-h"></li>
+                <div class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content text-center">
+                        <span>No se Encontraron Resultados</span>
+                    </br> {{ mensaje }}
+                    </span>
+                </div>
+            {% endif %}           
             </div>
         </div>
     </div>

@@ -42,7 +42,6 @@
                                                 <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file icon-position">
                                                     <i class="zmdi zmdi-attachment-alt"></i>{{form.foto}}      
                                                 </div>
-                                                <span>{{field.errors.as_text }}</span>
                                             </div>
                                         </div>                                        
                                     </div>
@@ -50,12 +49,12 @@
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <label class="mdl-textfield__label">{{ field.label }}</label>
-                                            {{ field }}
-                                            <span>{{ field.errors.as_text }}</span>                
+                                            {{ field }}             
                                         </div>
                                     </div>
                                 {% endif %}
                             {% endfor %}
+                            <span>{{field.errors }}</span>
                         </div>
                         <p class="text-center">
                             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">

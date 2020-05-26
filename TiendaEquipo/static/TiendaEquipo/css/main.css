@@ -894,6 +894,10 @@ html, body{
 	color: #70c16c;
 }
 
+.mdl-button--icon .zmdi-plus {
+	color: #2e6da4;
+}
+
 /*======= Subir Archivos*/
 .menu-action {
 	text-decoration: none;
@@ -930,6 +934,15 @@ html, body{
 }
 .icon-position {
     float: right;
+}
+.label-position {
+    float: left;
+}
+.units-label {
+    margin-left: 55px;
+}
+.icon-margin {
+    margin-left: 130px;
 }
 .demo-card-image.mdl-card {
     width: 256px;

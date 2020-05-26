@@ -41,11 +41,14 @@
                                         <span class="mdl-list__item-sub-title">Correo: {{ proveedor.correo }}</span>
                                         <span class="mdl-list__item-sub-title">Teléfono: {{ proveedor.telefono }}</span>
                                     </span>
-                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-delete" onclick="eliminarProveedor({{ proveedor.id }})">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
+                                    <a href="{% url 'modificar_proveedor' proveedor.id %}" class="menu-action">
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                    </a>
                                 </div>                   
                             {% endfor %}
+                            <div class="mdl-tooltip" for="btn-edit">Editar Proveedor</div>
                         </div>
                     </div>
                 </div>
@@ -70,11 +73,11 @@
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <label class="mdl-textfield__label">{{ field.label }}</label>
-                                            {{ field }}
-                                            <span>{{ field.errors.as_text }}</span>                
+                                            {{ field }}              
                                         </div>
                                     </div>
                                 {% endfor %}
+                                <span>{{ field.errors }}</span>  
                             </div>
                             <p class="text-center">
                                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
