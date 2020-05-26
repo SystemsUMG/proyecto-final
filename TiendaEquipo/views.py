@@ -148,6 +148,9 @@ def inventario(request):
     
     return render(request, "TiendaEquipo/inventario.html", {'productos': productos, 'contador': contador})
 
+def productos(request):
+    return render(request, "TiendaEquipo/productos.html")
+
 def modificar_producto(request, id):
     producto = Producto.objects.get(id=id)
     data = {
@@ -172,6 +175,7 @@ def eliminar_producto(request, id):
     return redirect("inventario")
 
 def ventas(request):
+    mensaje = ''
     ventas = Venta.objects.all()
 
     if request.method == "POST":
@@ -183,14 +187,23 @@ def ventas(request):
             cantidad = form.cleaned_data['cantidad']
             nombre = form.cleaned_data['producto']
             producto = Producto.objects.get(nombre_producto=nombre)
-            venta.total = cantidad * producto.precio_venta
-            venta.save()
-            return redirect("ventas")
+            unidades = producto.unidades
+
+            if cantidad > unidades:
+                mensaje = 'No existen suficientes unidades, por favor seleccione una cantidad menor'
+
+            else:
+                venta.total = cantidad * producto.precio_venta
+                venta.save()
+                total_unidades = unidades - cantidad
+                producto.unidades = total_unidades
+                producto.save()
+                return redirect("ventas")
 
     else:
         form = FormularioVenta()
 
-    return render(request, "TiendaEquipo/ventas.html", {'form': form, 'ventas': ventas})
+    return render(request, "TiendaEquipo/ventas.html", {'form': form, 'ventas': ventas, 'mensaje': mensaje})
 
 def eliminar_venta(request, id):
     venta = Venta.objects.get(id=id)

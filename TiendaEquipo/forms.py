@@ -64,7 +64,7 @@ class FormularioCliente(ModelForm):
     clave = forms.CharField(
         min_length=3,
         max_length=3,
-        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input'}),
+        widget=forms.NumberInput(attrs={'class' : 'mdl-textfield__input', 'type': 'password'}),
     )
 
     fecha_tarjeta = forms.DateField(
@@ -200,12 +200,3 @@ class FormularioVenta(ModelForm):
     class Meta:
         model = Venta
         fields = ['numeroVenta', 'cantidad', 'producto', 'cliente', 'pago']
-
-    def clean_cantidad(self):
-        cantidad = self.cleaned_data['cantidad']
-        producto = Producto.objects.get(id=self.cleaned_data.get('producto'))
-
-        if cantidad >= producto.unidades:
-            raise forms.ValidationError("No existen suficientes unidades")
-
-        return cantidad

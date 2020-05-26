@@ -20,10 +20,10 @@
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-        <a href="#tabListSales" class="mdl-tabs__tab is-active">Lista</a>
-        <a href="#tabNewSale" class="mdl-tabs__tab">Nueva</a>
+        <a href="#tabListSales" class="mdl-tabs__tab">Lista</a>
+        <a href="#tabNewSale" class="mdl-tabs__tab is-active">Nueva</a>
     </div>
-    <div class="mdl-tabs__panel is-active" id="tabListSales">
+    <div class="mdl-tabs__panel" id="tabListSales">
     <div class="full-width divider-menu-h"></div>
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
@@ -70,7 +70,7 @@
             </div>
         </div>    
     </div>  
-    <div class="mdl-tabs__panel" id="tabNewSale">
+    <div class="mdl-tabs__panel is-active" id="tabNewSale">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col">
                 <div class="full-width panel mdl-shadow--2dp">
@@ -125,7 +125,8 @@
                                         </button>
                                         <div class="mdl-tooltip" for="btn-addSale">Añadir Venta</div>
                                     </p>
-                                </div>	
+                                </div>
+                                {{ mensaje }}	
                             </div>
                         </form>
                     </div>

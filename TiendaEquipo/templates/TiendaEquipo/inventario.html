@@ -45,13 +45,13 @@
                                     <center><img src="{{producto.foto_producto.url}}" class="image-product" alt="Avatar" style="width:40px;height:40px"></center>
                                 </td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.nombre_producto }}</center></td>
-                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.categoria }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.categoria|title }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.unidades }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>Q.{{ producto.precio_compra }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>Q.{{ producto.precio_venta }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.fecha_ingreso }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric text-center">
-                                    <a href="{% url 'modificar_producto' producto.id %}">
+                                    <a href="{% url 'modificar_producto' producto.id %}" class="menu-action">
                                         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-invoice">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
