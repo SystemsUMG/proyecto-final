@@ -273,10 +273,20 @@ def eliminar_venta(request, id):
     return redirect("ventas")
 
 def factura(request, id):
-    ventas = Venta.objects.get(id=id) 
+    ventas = Venta.objects.get(id=id)
+    producto_busqueda = ventas.producto
+    producto = Producto.objects.get(nombre_producto=producto_busqueda)
+    precio = producto.precio_venta
+    id_busqueda = ventas.cliente.id
+    cliente = Cliente.objects.get(id=id_busqueda)
+    direccion = cliente.direccion
+    nit = cliente.nit
 
     data = {
-        'factura':ventas 
+        'ventas':ventas ,
+        'precio': precio,
+        'nit': nit,
+        'direccion': direccion
     }
 
 
