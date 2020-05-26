@@ -34,24 +34,24 @@
                     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                         <thead>
                             <tr>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Número</th>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Fecha</th>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Cliente</th>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Producto</th>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Pago</th>
-                                <th class="mdl-data-table__cell--non-numeric text-center">Total</th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Número</center></th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Fecha</center></th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Cliente</center></th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Producto</center></th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Pago</center></th>
+                                <th class="mdl-data-table__cell--non-numeric text-center"><center>Total</center></th>
                                 <th class="mdl-data-table__cell--non-numeric text-center">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for venta in ventas %}
                                 <tr>
-                                    <td class="mdl-data-table__cell--non-numeric">{{ venta.numeroVenta }}</td>
-                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.fecha }}</td>
-                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.cliente }}</td>
-                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.producto }}</td>
-                                    <td class="mdl-data-table__cell--non-numeric text-center">{{ venta.pago|title }}</td>
-                                    <td class="mdl-data-table__cell--non-numeric text-center">Q.{{ venta.total }}</td>
+                                    <td class="mdl-data-table__cell--non-numeric"><center>{{ venta.numeroVenta }}</center></td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center"><center>{{ venta.fecha }}</center></td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center"><center>{{ venta.cliente }}</center></td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center"><center>{{ venta.producto }}</center></td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center"><center>{{ venta.pago|title }}</center></td>
+                                    <td class="mdl-data-table__cell--non-numeric text-center"><center>Q.{{ venta.total }}</center></td>
                                     <td class="mdl-data-table__cell--non-numeric text-center">
                                         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-invoice">
                                             <i class="zmdi zmdi-file-text"></i>

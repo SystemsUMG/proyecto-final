@@ -118,18 +118,23 @@ def nuevo_producto(request):
         form = FormularioProducto(request.POST, files=request.FILES)
 
         if form.is_valid():
-            producto = form.save(commit=False)
-            producto.fecha_ingreso = datetime.date.today()
-            unidades = form.cleaned_data['unidades']
+            formulario = form.save(commit=False)
+            formulario.fecha_ingreso = datetime.date.today()
+            nuevas_unidades = form.cleaned_data['unidades']
             precio = form.cleaned_data['precio_compra']
-            nombre_prod = form.cleaned_data['nombre_producto']
-            producto.precio_total_compra = unidades * precio
+            nuevo_producto = form.cleaned_data['nombre_producto']
+            formulario.precio_total_compra = nuevas_unidades * precio
+            producto = Producto.objects.filter(nombre_producto=nuevo_producto)
 
-            if Producto.objects.filter(nombre_producto=nombre_prod):
-                return redirect("home")
+            if producto:
+                unidades = producto.unidades
+                total_unidades = unidades + nuevas_unidades
+                producto.unidades = total_unidades
+                producto.save()
+                return redirect("inventario")
 
             else:
-                producto.save()
+                formulario.save()
                 return redirect("inventario")
 
     else:
@@ -139,8 +144,32 @@ def nuevo_producto(request):
 
 def inventario(request):
     productos = Producto.objects.all()
+    contador = 0
     
-    return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
+    return render(request, "TiendaEquipo/inventario.html", {'productos': productos, 'contador': contador})
+
+def modificar_producto(request, id):
+    producto = Producto.objects.get(id=id)
+    data = {
+        'form': FormularioProducto(instance=producto)
+    }
+
+    if request.method == "POST":
+        formulario = FormularioProducto(data=request.POST, instance=producto, files=request.FILES)
+
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("inventario")
+
+        data['form'] = FormularioProducto(instance=Producto.objects.get(id=id))
+
+    return render(request, 'TiendaEquipo/modificar_producto.html', data)
+
+def eliminar_producto(request, id):
+    producto = Producto.objects.get(id=id)
+    producto.delete()
+
+    return redirect("inventario")
 
 def ventas(request):
     ventas = Venta.objects.all()
@@ -159,7 +188,7 @@ def ventas(request):
             return redirect("ventas")
 
     else:
-        form = FormularioVenta() 
+        form = FormularioVenta()
 
     return render(request, "TiendaEquipo/ventas.html", {'form': form, 'ventas': ventas})
 

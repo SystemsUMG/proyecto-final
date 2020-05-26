@@ -866,6 +866,9 @@ html, body{
 .mdl-js-ripple-effect .zmdi-file-text {
 	color: #2e6da4;
 }
+.mdl-js-ripple-effect .zmdi-edit {
+	color: #2e6da4;
+}
 .header-well-icon .zmdi-accounts-list-alt {
 	color: #70c16c;
 }
@@ -906,6 +909,10 @@ html, body{
 	margin-left: 22px;
 	background-color: #b6ffff;
 	border-radius: 20px;
+}
+.image-product {
+	box-shadow: 1px 1px 3px rgb(133, 116, 116);
+	border-radius: 5px;
 }
 .mdl-button--file input {
     cursor: pointer;

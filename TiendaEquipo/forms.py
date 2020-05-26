@@ -135,14 +135,14 @@ class FormularioProveedor(ModelForm):
 
 class FormularioProducto(ModelForm):
     nombre_producto = forms.CharField(
-        max_length=25,
+        max_length=50,
         min_length=2,
         widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'}),
         label='Producto',
     )
 
     marca = forms.CharField(
-        max_length=25,
+        max_length=50,
         min_length=2,
         widget=forms.TextInput(attrs={'class' : 'mdl-textfield__input'})
     )
@@ -167,6 +167,7 @@ class FormularioProducto(ModelForm):
     )
 
     descripcion = forms.CharField(
+        max_length=500,
         widget=forms.Textarea(attrs={'class' : 'mdl-textfield__input'}),
         label='Descripción',
     )
@@ -199,3 +200,12 @@ class FormularioVenta(ModelForm):
     class Meta:
         model = Venta
         fields = ['numeroVenta', 'cantidad', 'producto', 'cliente', 'pago']
+
+    def clean_cantidad(self):
+        cantidad = self.cleaned_data['cantidad']
+        producto = Producto.objects.get(id=self.cleaned_data.get('producto'))
+
+        if cantidad >= producto.unidades:
+            raise forms.ValidationError("No existen suficientes unidades")
+
+        return cantidad

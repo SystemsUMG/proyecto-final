@@ -1,5 +1,6 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block title %} Inventario {% endblock %}
 
@@ -14,42 +15,58 @@
         </p>
     </div>
 </section>
-<div class="full-width divider-menu-h"></div>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-        <div class="table-responsive">
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
-                <thead>
-                    <tr>
-                        <th class="mdl-data-table__cell--non-numeric">Name</th>
-                        <th>Codigo</th>
-                        <th>Stock</th>
-                        <th>Precio</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for producto in productos %}
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+            <div class="full-width panel-tittle bg-success text-center tittles">
+                Lista de Productos
+            </div>
+            <div class="table-responsive">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+                    <thead>
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric">{{ producto.nombre_producto }}</td>
-                            <td>{{ producto.id }}</td>
-                            <td>{{ producto.unidades }}</td>
-                            <td>Q.{{ producto.precio_venta }}</td>
-                            <td>{{ producto.proveedor }}</td>
-                            <td> <div class="mdl-button mdl-js-button mdl-button--icon" id="{{ producto.id }}"><i class="zmdi zmdi-more-vert"></i></div>
-                                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{ producto.id }}">
-                                    <a href="" class="subrayado">
-                                        <li class="mdl-menu__item">Modificar</li>
+                            <th class="mdl-data-table__cell--non-numeric"><center>#</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Imagen</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Nombre</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Categoría</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Unidades</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Costo</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Precio</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>Fecha de Ingreso</center></th>
+                            <th class="mdl-data-table__cell--non-numeric">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ contador }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <center><img src="{{producto.foto_producto.url}}" class="image-product" alt="Avatar" style="width:40px;height:40px"></center>
+                                </td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.nombre_producto }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.categoria }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.unidades }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>Q.{{ producto.precio_compra }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>Q.{{ producto.precio_venta }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.fecha_ingreso }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric text-center">
+                                    <a href="{% url 'modificar_producto' producto.id %}">
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-invoice">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
                                     </a>
-                                    <a href="" class="subrayado">
-                                        <li class="mdl-menu__item">Eliminar</li>
-                                    </a>
-                                </ul>
-                            </td>
-                        </tr>          
-                    {% endfor %}
-                </tbody>
-            </table>
+                                    <div class="mdl-tooltip" for="btn-invoice">Editar Producto</div>
+                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-delete" onclick="eliminarProducto({{ producto.id }})">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                    <div class="mdl-tooltip" for="btn-delete">Eliminar Producto</div>
+                                </td>
+                            </tr>          
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
