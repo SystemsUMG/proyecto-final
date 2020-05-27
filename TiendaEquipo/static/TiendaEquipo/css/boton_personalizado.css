@@ -1,0 +1,13 @@
+.boton_personalizado{
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #2e6da4;
+  border-radius: 6px;
+}
+.boton_personalizado:hover{
+    color: #ffffff;
+    background-color: #659bd6;
+  }

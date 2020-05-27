@@ -106,13 +106,6 @@ class Venta(models.Model):
     def __str__(self):
         return '%s' %self.cliente
 
-class Factura(models.Model):
-    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    ventas=models.ForeignKey(Venta, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '%s' %self.cliente
-
 def foto_delete(sender, instance, **kwargs):
     instance.foto.delete(False)
 post_delete.connect(foto_delete, sender=Cliente)

@@ -15,7 +15,6 @@ def home(request):
         'productos': Producto.objects.all(),
         'ventas': Venta.objects.all(),
         'categorias': 38,
-        'facturas': 5,
     }
     return render(request, "TiendaEquipo/home.html", cantidades)
 
@@ -148,9 +147,8 @@ def nuevo_producto(request):
 
 def inventario(request):
     productos = Producto.objects.all()
-    contador = 0
     
-    return render(request, "TiendaEquipo/inventario.html", {'productos': productos, 'contador': contador})
+    return render(request, "TiendaEquipo/inventario.html", {'productos': productos})
 
 def productos(request):
     productos = Producto.objects.all()
@@ -268,13 +266,14 @@ def factura(request, id):
     cliente = Cliente.objects.get(id=id_busqueda)
     direccion = cliente.direccion
     nit = cliente.nit
-
+    numero = ventas.numeroVenta
+    numero_factura = numero + 1100
     data = {
         'ventas':ventas ,
         'precio': precio,
         'nit': nit,
-        'direccion': direccion
+        'direccion': direccion,
+        'numero': numero_factura
     }
-
-
+    
     return render(request, 'TiendaEquipo/factura.html', data)

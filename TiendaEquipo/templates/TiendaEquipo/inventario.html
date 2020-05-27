@@ -40,7 +40,7 @@
                     <tbody>
                         {% for producto in productos %}
                             <tr>
-                                <td class="mdl-data-table__cell--non-numeric"><center>{{ contador }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ forloop.counter }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric">
                                     <center><img src="{{producto.foto_producto.url}}" class="image-product" alt="Avatar" style="width:40px;height:40px"></center>
                                 </td>
