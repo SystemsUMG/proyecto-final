@@ -1,6 +1,5 @@
 {% extends 'TiendaEquipo/base.html' %}
 {% load static %}
-{% load mathfilters %}
 
 {% block title %} Inventario {% endblock %}
 
@@ -26,7 +25,7 @@
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
                     <thead>
                         <tr>
-                            <th class="mdl-data-table__cell--non-numeric"><center>#</center></th>
+                            <th class="mdl-data-table__cell--non-numeric"><center>No.</center></th>
                             <th class="mdl-data-table__cell--non-numeric"><center>Imagen</center></th>
                             <th class="mdl-data-table__cell--non-numeric"><center>Nombre</center></th>
                             <th class="mdl-data-table__cell--non-numeric"><center>Categoría</center></th>
@@ -44,7 +43,7 @@
                                 <td class="mdl-data-table__cell--non-numeric">
                                     <center><img src="{{producto.foto_producto.url}}" class="image-product" alt="Avatar" style="width:40px;height:40px"></center>
                                 </td>
-                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.nombre_producto }}</center></td>
+                                <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.nombre_producto|title }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.categoria|title }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.unidades }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric"><center>Q.{{ producto.precio_compra }}</center></td>
@@ -52,15 +51,15 @@
                                 <td class="mdl-data-table__cell--non-numeric"><center>{{ producto.fecha_ingreso }}</center></td>
                                 <td class="mdl-data-table__cell--non-numeric text-center">
                                     <a href="{% url 'modificar_producto' producto.id %}" class="menu-action">
-                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-invoice">
+                                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="{{ producto.nombre_producto }}">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
                                     </a>
-                                    <div class="mdl-tooltip" for="btn-invoice">Editar Producto</div>
-                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-delete" onclick="eliminarProducto({{ producto.id }})">
+                                    <div class="mdl-tooltip" for="{{ producto.nombre_producto }}">Editar Producto</div>
+                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="{{ producto.id }}" onclick="eliminarProducto({{ producto.id }})">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
-                                    <div class="mdl-tooltip" for="btn-delete">Eliminar Producto</div>
+                                    <div class="mdl-tooltip" for="{{ producto.id }}">Eliminar Producto</div>
                                 </td>
                             </tr>
                         {% endfor %}

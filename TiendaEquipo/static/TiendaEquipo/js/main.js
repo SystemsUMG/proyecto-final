@@ -91,24 +91,6 @@ function confirmarEliminacion(id) {
 	});
 };
 
-function eliminarProveedor(id) {
-    swal({
-        title: "¿Está Seguro?",
-        text: "No podrá deshacer esta acción",
-        type: "warning",
-        showCancelButton: true,
-        dangerMode: true,
-		confirmButtonText: 'Confirmar',
-		cancelButtonText: 'Cancelar',  
-		closeOnConfirm: false
-	},
-	function(isConfirm) {
-		if (isConfirm) {
-			window.location.href ='/eliminar-proveedor/'+id+'/'; 
-		}
-	});
-};
-
 function eliminarProducto(id) {
     swal({
         title: "¿Está Seguro?",
@@ -141,24 +123,6 @@ function eliminarVenta(id) {
 	function(isConfirm) {
 		if (isConfirm) {
 			window.location.href ='/eliminar-venta/'+id+'/'; 
-		}
-	});
-};
-
-function eliminarFactura(id) {
-    swal({
-        title: "¿Está Seguro?",
-        text: "No podrá deshacer esta acción",
-        type: "warning",
-        showCancelButton: true,
-        dangerMode: true,
-		confirmButtonText: 'Confirmar',
-		cancelButtonText: 'Cancelar',  
-		closeOnConfirm: false
-	},
-	function(isConfirm) {
-		if (isConfirm) {
-			window.location.href ='/eliminar-factura/'+id+'/'; 
 		}
 	});
 };

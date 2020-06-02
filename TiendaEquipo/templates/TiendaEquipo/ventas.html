@@ -108,20 +108,20 @@
                                 </div>
                                 <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <label class="mdl-textfield__label" for="PriceProduct">{{ form.producto.label }}</label><br> 
-                                    </div>
-                                    {{ form.producto }}
-                                    <span>{{ form.producto.errors }}</span>
-                                </div>
-                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <label class="mdl-textfield__label" for="discountProduct">{{ form.cliente.label }} </label><br>
                                     </div>
                                     {{ form.cliente }}
                                     <span>{{ form.cliente.errors }}</span> 
                                 </div>
                                 <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
-                                    <p class="text-center"><br>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="PriceProduct">{{ form.producto.label }}</label><br> 
+                                    </div>
+                                    {{ form.producto }}
+                                    <span>{{ form.producto.errors }}</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet">
+                                    <p class="text-center"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addSale">
                                             <i class="zmdi zmdi-shopping-cart"></i>
                                         </button>

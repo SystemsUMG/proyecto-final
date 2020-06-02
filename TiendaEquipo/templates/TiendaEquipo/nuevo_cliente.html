@@ -32,6 +32,7 @@
                            <div class="mdl-cell mdl-cell--12-col">
                                 <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; Datos del Cliente</legend><br>
                             </div>
+                            <span>{{ form.errors }}</span>
                             {% for field in form %}
                                 {% if field == form.foto %}
                                     <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet ">
@@ -54,14 +55,15 @@
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                            <span>{{field.errors }}</span>
+                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                <p class="text-center">
+                                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                                        <i class="zmdi zmdi-plus"></i>
+                                    </button>
+                                    <div class="mdl-tooltip" for="btn-addClient">Añadir Cliente</div>
+                                </p>
+                            </div>
                         </div>
-                        <p class="text-center">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
-                                <i class="zmdi zmdi-plus"></i>
-                            </button>
-                            <div class="mdl-tooltip" for="btn-addClient">Añadir Cliente</div>
-                        </p>
                     </form>
                 </div>
             </div>
